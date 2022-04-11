@@ -1,0 +1,334 @@
+<div class="widget-body-toolbar">
+  <div class="btn-group">
+    <button type="button" class="btn btn-success"  [disabled]="loading===true" (click)="SubmitDefect()" style="margin-bottom: 15px;">
+      Save
+    </button>
+    <button type="button" class="btn btn-info"  [disabled]="loading===true" (click)="ResetDefect()" style="margin-bottom: 15px;">
+      Reset
+    </button>
+    <button type="button" class="btn btn-danger" (click)="CancelDefect()" style="margin-bottom: 15px;">
+      Cancel
+    </button>
+  </div>
+</div>
+<div class="row">
+  <article class="col-sm-13 col-lg-10">
+    <div role="content">
+      <!-- widget content -->
+      <div class="widget-body smart-form">
+        <!-- <header>
+              <h2>Defect #{{defect_data.DefectID}}</h2>
+            </header> -->
+        <fieldset>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Status</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="defect_data.Status" readonly>
+              </label>
+            </section>
+            <section class="col col-lg-6">
+                <label class="label">Environment</label>
+                <label class="select">
+                    <select [(ngModel)]="defect_data.Environ">
+                      <option value="Certification">Certification</option>
+                      <option value="Production">Production</option>
+                    </select>
+                    <i></i>
+                  </label>
+              </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Type</label>
+              <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (defect_data.DefType != '') }" >
+                  <select [(ngModel)]="defect_data.DefType">
+                      <option value="">Please select Type</option>
+                      <option value="5010 / 4010 EDI">5010 / 4010 EDI</option>
+                      <option value="Bug">Bug</option>
+                      <option value="Compliance">Compliance</option>
+                      <option value="Feature">Feature</option>
+                      <option value="Performance">Performance</option>
+                      <option value="Report">Report</option>
+                      <option value="Research">Research</option>
+                      <option value="Script / Data Edit">Script / Data Edit</option>
+                  </select>
+                  <i></i>
+                </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Public</label>
+              <label class="select">
+                  <select [(ngModel)]="defect_data.DPublic">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                  </select>
+                  <i></i>
+                </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Category</label>
+              <label class="select">
+                  <select [(ngModel)]="defect_data.CateGory">
+                    <option value="Administration">Administration</option>
+                    <option value="Billing / AR">Billing / AR</option>
+                    <option value="Client">Client</option>
+                    <option value="ECR - Medical Records">ECR - Medical Records</option>
+                    <option value="Employee">Employee</option>
+                    <option value="e-Prescribing">e-Prescribing</option>
+                    <option value="Front Desk">Front Desk</option>
+                    <option value="Point Of Entry">Point Of Entry</option>
+                    <option value="Reporting - Adhoc Reports">Reporting - Adhoc Reports</option>
+                    <option value="Reporting - Canned Reports">Reporting - Canned Reports</option>
+                    <option value="Reporting - Requirements">Reporting - Requirements</option>
+                    <option value="System Outage">System Outage</option>
+                    <option value="Unplugged">Unplugged</option>                      
+                  </select>
+                  <i></i>
+                </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Sub Category</label>
+              <label class="select">
+                  <select [(ngModel)]="defect_data.SubCategry">                   
+<option value="Administration:Activities">Administration:Activities</option>
+<option value="Administration:Audit Log">Administration:Audit Log</option>
+<option value="Administration:Bed Administration">Administration:Bed Administration</option>
+<option value="Administration:Bill Next Procedure">Administration:Bill Next Procedure</option>
+<option value="Administration:Billing Categories">Administration:Billing Categories</option>
+<option value="Administration:Business Rules">Administration:Business Rules</option>
+<option value="Administration:Collections">Administration:Collections</option>
+<option value="Administration:Configurable Forms">Administration:Configurable Forms</option>
+<option value="Administration:Configure">Administration:Configure</option>
+<option value="Administration:Dashboard Administration">Administration:Dashboard Administration</option>
+<option value="Administration:Descriptors / List Modifiers">Administration:Descriptors / List Modifiers</option>
+<option value="Administration:EDI">Administration:EDI</option>
+<option value="Administration:Eligibility Response">Administration:Eligibility Response</option>
+<option value="Administration:Episode Types">Administration:Episode Types</option>
+<option value="Administration:Groups">Administration:Groups</option>
+<option value="Administration:HCFA / UB04 Config">Administration:HCFA / UB04 Config</option>
+<option value="Administration:Holiday Administration">Administration:Holiday Administration</option>
+<option value="Administration:Immunizations">Administration:Immunizations</option>
+<option value="Administration:Medications">Administration:Medications</option>
+<option value="Administration:Menu Management">Administration:Menu Management</option>
+<option value="Administration:Order Modules">Administration:Order Modules</option>
+<option value="Administration:Organizations">Administration:Organizations</option>
+<option value="Administration:Other">Administration:Other</option>
+<option value="Administration:Payer Panels">Administration:Payer Panels</option>
+<option value="Administration:Payers">Administration:Payers</option>
+<option value="Administration:Privilege Groups">Administration:Privilege Groups</option>
+<option value="Administration:Procedures">Administration:Procedures</option>
+<option value="Administration:Programs">Administration:Programs</option>
+<option value="Administration:Reports Administration">Administration:Reports Administration</option>
+<option value="Administration:Scheduling Rules">Administration:Scheduling Rules</option>
+<option value="Administration:Scheduling Template Administration">Administration:Scheduling Template Administration</option>
+<option value="Administration:Security Management Rules">Administration:Security Management Rules</option>
+<option value="Administration:Service Document Crosswalk">Administration:Service Document Crosswalk</option>
+<option value="Administration:Service Document Unsign">Administration:Service Document Unsign</option>
+<option value="Administration:Service Documents">Administration:Service Documents</option>
+<option value="Administration:Sliding Fee Scale">Administration:Sliding Fee Scale</option>
+<option value="Administration:Treatment Plan Grid">Administration:Treatment Plan Grid</option>
+<option value="Billing / AR:Auto Claim Approved Settings">Billing / AR:Auto Claim Approved Settings</option>
+<option value="Billing / AR:Auto Claim Batch Settings">Billing / AR:Auto Claim Batch Settings</option>
+<option value="Billing / AR:Auto Payment Approval Settings">Billing / AR:Auto Payment Approval Settings</option>
+<option value="Billing / AR:Cash Sheet Approval">Billing / AR:Cash Sheet Approval</option>
+<option value="Billing / AR:Claim Approval">Billing / AR:Claim Approval</option>
+<option value="Billing / AR:Claim Batches">Billing / AR:Claim Batches</option>
+<option value="Billing / AR:Claim Maintenance">Billing / AR:Claim Maintenance</option>
+<option value="Billing / AR:Claim Rollup Rules">Billing / AR:Claim Rollup Rules</option>
+<option value="Billing / AR:Client Statement Batch">Billing / AR:Client Statement Batch</option>
+<option value="Billing / AR:Collections">Billing / AR:Collections</option>
+<option value="Billing / AR:Deposit Edit">Billing / AR:Deposit Edit</option>
+<option value="Billing / AR:De-Post Deposit">Billing / AR:De-Post Deposit</option>
+<option value="Billing / AR:EDI 835 Adjustment Reason">Billing / AR:EDI 835 Adjustment Reason</option>
+<option value="Billing / AR:EDI 835 Upload">Billing / AR:EDI 835 Upload</option>
+<option value="Billing / AR:Electronic Remmittance">Billing / AR:Electronic Remmittance</option>
+<option value="Billing / AR:Failed Activities">Billing / AR:Failed Activities</option>
+<option value="Billing / AR:Failed Claims">Billing / AR:Failed Claims</option>
+<option value="Billing / AR:GL Code Admin">Billing / AR:GL Code Admin</option>
+<option value="Billing / AR:GL Export">Billing / AR:GL Export</option>
+<option value="Billing / AR:Manual Claim">Billing / AR:Manual Claim</option>
+<option value="Billing / AR:Mass Backout / Reversal">Billing / AR:Mass Backout / Reversal</option>
+<option value="Billing / AR:My Collections">Billing / AR:My Collections</option>
+<option value="Billing / AR:Other">Billing / AR:Other</option>
+<option value="Billing / AR:Payment Approval">Billing / AR:Payment Approval</option>
+<option value="Billing / AR:Payment Entry">Billing / AR:Payment Entry</option>
+<option value="Billing / AR:Payment Maintenance">Billing / AR:Payment Maintenance</option>
+<option value="Billing / AR:Payment Transfer">Billing / AR:Payment Transfer</option>
+<option value="Client:Alternate Alerts">Client:Alternate Alerts</option>
+<option value="Client:Alternate Case Load">Client:Alternate Case Load</option>
+<option value="Client:Alternate Client ID Entry">Client:Alternate Client ID Entry</option>
+<option value="Client:Call Log Status">Client:Call Log Status</option>
+<option value="Client:Client Relationships">Client:Client Relationships</option>
+<option value="Client:Client Schedule">Client:Client Schedule</option>
+<option value="Client:Client Search">Client:Client Search</option>
+<option value="Client:Client Statement Batch">Client:Client Statement Batch</option>
+<option value="Client:Continuity of Care">Client:Continuity of Care</option>
+<option value="Client:Document Library">Client:Document Library</option>
+<option value="Client:ID Number Entry">Client:ID Number Entry</option>
+<option value="Client:My Alerts">Client:My Alerts</option>
+<option value="Client:My Case Load">Client:My Case Load</option>
+<option value="Client:My Groups">Client:My Groups</option>
+<option value="Client:New Client Activity">Client:New Client Activity</option>
+<option value="Client:Recurring Client Appt">Client:Recurring Client Appt</option>
+<option value="Client:Service History">Client:Service History</option>
+<option value="ECR - Medical Records:Alternate Client ID Entry">ECR - Medical Records:Alternate Client ID Entry</option>
+<option value="ECR - Medical Records:Bed Whiteboard">ECR - Medical Records:Bed Whiteboard</option>
+<option value="ECR - Medical Records:Black Box Administration">ECR - Medical Records:Black Box Administration</option>
+<option value="ECR - Medical Records:Client Liability">ECR - Medical Records:Client Liability</option>
+<option value="ECR - Medical Records:Client Search">ECR - Medical Records:Client Search</option>
+<option value="ECR - Medical Records:Contact Information">ECR - Medical Records:Contact Information</option>
+<option value="ECR - Medical Records:Continuity of Care">ECR - Medical Records:Continuity of Care</option>
+<option value="ECR - Medical Records:Demographics">ECR - Medical Records:Demographics</option>
+<option value="ECR - Medical Records:Document Library">ECR - Medical Records:Document Library</option>
+<option value="ECR - Medical Records:Episodes">ECR - Medical Records:Episodes</option>
+<option value="ECR - Medical Records:Financial Overview">ECR - Medical Records:Financial Overview</option>
+<option value="ECR - Medical Records:Financial Snapshot">ECR - Medical Records:Financial Snapshot</option>
+<option value="ECR - Medical Records:Group Assignment|">ECR - Medical Records:Group Assignment|</option>
+<option value="ECR - Medical Records:Guarantors">ECR - Medical Records:Guarantors</option>
+<option value="ECR - Medical Records:MARS Entry">ECR - Medical Records:MARS Entry</option>
+<option value="ECR - Medical Records:Medications">ECR - Medical Records:Medications</option>
+<option value="ECR - Medical Records:Order Whiteboard">ECR - Medical Records:Order Whiteboard</option>
+<option value="ECR - Medical Records:Other">ECR - Medical Records:Other</option>
+<option value="ECR - Medical Records:Patient Assistance Whiteboard">ECR - Medical Records:Patient Assistance Whiteboard</option>
+<option value="ECR - Medical Records:Payer Authorization">ECR - Medical Records:Payer Authorization</option>
+<option value="ECR - Medical Records:Payers">ECR - Medical Records:Payers</option>
+<option value="ECR - Medical Records:Program History">ECR - Medical Records:Program History</option>
+<option value="ECR - Medical Records:Schedule">ECR - Medical Records:Schedule</option>
+<option value="ECR - Medical Records:Service Document">ECR - Medical Records:Service Document</option>
+<option value="ECR - Medical Records:Service History">ECR - Medical Records:Service History</option>
+<option value="ECR - Medical Records:Sliding Scale">ECR - Medical Records:Sliding Scale</option>
+<option value="ECR - Medical Records:Staff Relationships">ECR - Medical Records:Staff Relationships</option>
+<option value="ECR - Medical Records:Treatment Diagnosis">ECR - Medical Records:Treatment Diagnosis</option>
+<option value="ECR - Medical Records:Treatment Plan">ECR - Medical Records:Treatment Plan</option>
+<option value="Employee:Add New Staff">Employee:Add New Staff</option>
+<option value="Employee:Client Relationships">Employee:Client Relationships</option>
+<option value="Employee:Credentials">Employee:Credentials</option>
+<option value="Employee:Employee Reports">Employee:Employee Reports</option>
+<option value="Employee:Employment History">Employee:Employment History</option>
+<option value="Employee:HR Alerts">Employee:HR Alerts</option>
+<option value="Employee:Login Information">Employee:Login Information</option>
+<option value="Employee:Other">Employee:Other</option>
+<option value="Employee:Privileges">Employee:Privileges</option>
+<option value="Employee:Reset Password">Employee:Reset Password</option>
+<option value="Employee:Staff Shifts / Organizations">Employee:Staff Shifts / Organizations</option>
+<option value="Employee:Staff Termination">Employee:Staff Termination</option>
+<option value="e-Prescribing:Enhancement">e-Prescribing:Enhancement</option>
+<option value="e-Prescribing:Issue">e-Prescribing:Issue</option>
+<option value="e-Prescribing:Performance">e-Prescribing:Performance</option>
+<option value="e-Prescribing:Registration">e-Prescribing:Registration</option>
+<option value="Front Desk:Bed Whiteboard">Front Desk:Bed Whiteboard</option>
+<option value="Front Desk:Cash Sheet">Front Desk:Cash Sheet</option>
+<option value="Front Desk:Front Desk Reports">Front Desk:Front Desk Reports</option>
+<option value="Front Desk:Front Desk Schedule">Front Desk:Front Desk Schedule</option>
+<option value="Front Desk:Other">Front Desk:Other</option>
+<option value="Point Of Entry:Intake Tracking">Point Of Entry:Intake Tracking</option>
+<option value="Reporting - Adhoc Reports:Building Reports">Reporting - Adhoc Reports:Building Reports</option>
+<option value="Reporting - Adhoc Reports:Business Intelligence">Reporting - Adhoc Reports:Business Intelligence</option>
+<option value="Reporting - Adhoc Reports:Creating Parameters">Reporting - Adhoc Reports:Creating Parameters</option>
+<option value="Reporting - Adhoc Reports:Finding Tables/Fields">Reporting - Adhoc Reports:Finding Tables/Fields</option>
+<option value="Reporting - Adhoc Reports:Folders">Reporting - Adhoc Reports:Folders</option>
+<option value="Reporting - Adhoc Reports:Login Problems">Reporting - Adhoc Reports:Login Problems</option>
+<option value="Reporting - Adhoc Reports:Other">Reporting - Adhoc Reports:Other</option>
+<option value="Reporting - Adhoc Reports:Pentaho Report Designer">Reporting - Adhoc Reports:Pentaho Report Designer</option>
+<option value="Reporting - Adhoc Reports:Pentaho User Console">Reporting - Adhoc Reports:Pentaho User Console</option>
+<option value="Reporting - Adhoc Reports:Report Accuracy">Reporting - Adhoc Reports:Report Accuracy</option>
+<option value="Reporting - Adhoc Reports:Running Reports">Reporting - Adhoc Reports:Running Reports</option>
+<option value="Reporting - Canned Reports:Billing Reports">Reporting - Canned Reports:Billing Reports</option>
+<option value="Reporting - Canned Reports:Employee Reports">Reporting - Canned Reports:Employee Reports</option>
+<option value="Reporting - Canned Reports:Front Desk Reports">Reporting - Canned Reports:Front Desk Reports</option>
+<option value="Reporting - Canned Reports:GL Reports">Reporting - Canned Reports:GL Reports</option>
+<option value="Reporting - Canned Reports:Other">Reporting - Canned Reports:Other</option>
+<option value="Reporting - Canned Reports:POE Reports">Reporting - Canned Reports:POE Reports</option>
+<option value="Reporting - Canned Reports:Report Format">Reporting - Canned Reports:Report Format</option>
+<option value="Reporting - Canned Reports:Reports Administration">Reporting - Canned Reports:Reports Administration</option>
+<option value="Reporting - Canned Reports:Running Reports">Reporting - Canned Reports:Running Reports</option>
+<option value="Reporting - Canned Reports:Utilization Mgmt Reports">Reporting - Canned Reports:Utilization Mgmt Reports</option>
+<option value="Reporting - Requirements:Data Extract">Reporting - Requirements:Data Extract</option>
+<option value="Reporting - Requirements:Federal">Reporting - Requirements:Federal</option>
+<option value="Reporting - Requirements:Other">Reporting - Requirements:Other</option>
+<option value="Reporting - Requirements:State">Reporting - Requirements:State</option>
+<option value="Scheduling:Batch Activity Entry">Scheduling:Batch Activity Entry</option>
+<option value="Scheduling:Client Schedule">Scheduling:Client Schedule</option>
+<option value="Scheduling:Editing an Activity">Scheduling:Editing an Activity</option>
+<option value="Scheduling:Group Roster">Scheduling:Group Roster</option>
+<option value="Scheduling:Impacted Appointment List">Scheduling:Impacted Appointment List</option>
+<option value="Scheduling:Manage Recurrences">Scheduling:Manage Recurrences</option>
+<option value="Scheduling:My Schedule">Scheduling:My Schedule</option>
+<option value="Scheduling:New Client Activity">Scheduling:New Client Activity</option>
+<option value="Scheduling:New Grop Activity">Scheduling:New Grop Activity</option>
+<option value="Scheduling:New Staff Activity">Scheduling:New Staff Activity</option>
+<option value="Scheduling:Other">Scheduling:Other</option>
+<option value="Scheduling:Recurring Client Appt">Scheduling:Recurring Client Appt</option>
+<option value="Scheduling:Recurring Group Appt">Scheduling:Recurring Group Appt</option>
+<option value="Scheduling:Recurring Staff Appt">Scheduling:Recurring Staff Appt</option>
+<option value="Scheduling:Staff Schedule">Scheduling:Staff Schedule</option>
+<option value="Scheduling:Status Activity">Scheduling:Status Activity</option>
+<option value="System Outage:Error Message">System Outage:Error Message</option>
+<option value="System Outage:Performance Issue">System Outage:Performance Issue</option>
+<option value="Unplugged:Error">Unplugged:Error</option>
+<option value="Unplugged:General Questions">Unplugged:General Questions</option>
+<option value="Unplugged:Other">Unplugged:Other</option>
+<option value="Unplugged:Setup/Privileging">Unplugged:Setup/Privileging</option>
+                  </select>
+                  <i></i>
+                </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Create Date</label>
+              <label class="input">
+                <input type="text" [ngModel]="defect_data.SubDate | date:'medium'" (ngModelChange)="defect_data.SubDate = $event" readonly>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Reporter</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="defect_data.Submitter" readonly>
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">QA Person</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="defect_data.QAPerson">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Summary</label>
+              <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (defect_data.Synopsis != '') }">
+                <input type="text" [(ngModel)]="defect_data.Synopsis">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Description</label>
+              <label class="textarea">
+                <textarea rows="4" [(ngModel)]="defect_data.Details"></textarea>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Steps to Reproduce</label>
+              <label class="textarea">
+                <textarea rows="4" [(ngModel)]="defect_data.Steps"></textarea>
+              </label>
+            </section>
+          </div>
+        </fieldset>
+      </div>
+      <!-- end widget body-->
+    </div>
+  </article>
+</div>
+<div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;" [ngClass]="{'display-none' : !loading }">
+  <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+</div>

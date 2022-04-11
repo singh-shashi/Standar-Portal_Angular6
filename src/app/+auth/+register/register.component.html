@@ -1,0 +1,135 @@
+<header id="header" class="animated fadeInDown">
+
+  <div id="logo-group" style="background: transparent;">
+    <span id="logo">
+      <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </span>
+  </div>
+
+  <!-- <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs ">Need an account?</span> <a routerLink="/auth/register" class="btn btn-danger">Create account</a> </span> -->
+
+</header>
+<div id="main" role="main" class="animated fadeInDown">
+  <div id="content" class="container">
+    <div class="row bg-color-white no-border default-bg">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6 beforeloginform">
+        <div class="well no-padding" style="position: relative;">
+          <div id="logo-group" style="background: transparent;">
+            <span id="logo">
+              <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </span>
+          </div>
+          <form id="smart-form-register" class="smart-form client-form">
+            <fieldset>
+              <section>
+                <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (FName != undefined) }">
+                  <i class="icon-append fa fa-user"></i>
+                  <input type="text" [(ngModel)]="FName" data-smart-validate-input="" data-required="" [ngModelOptions]="{standalone: true}"
+                    placeholder="First Name">
+                  
+                </label>
+              </section>
+              <section>
+                <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (LName != undefined) }">
+                  <i class="icon-append fa fa-user"></i>
+                  <input type="text" [(ngModel)]="LName" [ngModelOptions]="{standalone: true}" placeholder="Last Name">
+                  
+                </label>
+              </section>
+              <section>
+                <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (email != undefined && validateEmail) }">
+                  <i class="icon-append fa fa-envelope"></i>
+                  <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Email Address">
+                  
+                </label>
+              </section>
+              <section>
+                <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (companyAcct != null) }">
+                  <select [(ngModel)]="companyAcct" name="companyAcct">
+                    <option *ngFor="let comp of company" [ngValue]="comp">
+                      {{comp.Company}}
+                    </option>
+                  </select>
+                  <i class="icon-append" [ngClass]="{'display-none' : loading }"></i>
+                  <i class="icon-append fas fa-circle-notch fa-spin text-primary loadingSelect" [ngClass]="{'display-none' : loading }"></i>
+                </label>
+              </section>
+
+
+              <section>
+                <label class="input">
+                  <i class="icon-append fa fa-building"></i>
+                  <input type="text" [(ngModel)]="Address2" [ngModelOptions]="{standalone: true}" placeholder="Address">
+                  
+                </label>
+              </section>
+
+              <section>
+                <label class="input">
+                  <i class="icon-append fa fa-phone"></i>
+                  <input type="text" [(ngModel)]="BPhone" [ngModelOptions]="{standalone: true}" placeholder="Phone">
+                  
+                </label>
+              </section>
+              <section>
+                <label class="input">
+                  <i class="icon-append fa fa-mobile" style="font-size: 24px"></i>
+                  <input type="text" [(ngModel)]="Mobile" [ngModelOptions]="{standalone: true}" placeholder="Mobile">
+                  
+                </label>
+              </section>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <section class="col col-6">
+                  <label class="input">
+                    <input type="text" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" placeholder="City">
+                    <i class="icon-append fa fa-home"></i>
+                  </label>
+                </section>
+                <section class="col col-6">
+                  <label class="input">
+                    <i class="icon-append fa fa-globe"></i>
+                    <input type="text" [(ngModel)]="Country" [ngModelOptions]="{standalone: true}" placeholder="Country">
+                  </label>
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-6">
+                  <label class="input">
+                    <i class="icon-append fa fa-flag"></i>
+                    <input type="text" [(ngModel)]="StatePr" [ngModelOptions]="{standalone: true}" placeholder="State">
+                  </label>
+                </section>
+                <section class="col col-6">
+                  <label class="input">
+                    <i class="icon-append fa fa-map-pin"></i>
+                    <input type="text" [(ngModel)]="ZipPost" [ngModelOptions]="{standalone: true}" placeholder="Zip" class="datepicker">
+                  </label>
+                </section>
+              </div>
+            </fieldset>
+            <footer>
+              <button (click)="registeruser()" class="btn btn-primary btn-login">
+                Register
+              </button>
+              <button routerLink="/auth/login" class="btn btn-danger btn-login">
+                Back to Login
+              </button>
+            </footer>
+
+            <div class="message">
+              <i class="fa fa-check"></i>
+              <p>
+                Thank you for your registration!
+              </p>
+            </div>
+          </form>
+          <!-- <div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;">
+            <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

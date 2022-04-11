@@ -1,0 +1,61 @@
+{
+  "soffrontcontact": {
+      "UserEmailField": "email",
+      "PasswordField": "Pswd",
+      "PortalAccessField": "PortalAcc",
+      "PortalAccessTypeField": "PAccessTyp",
+      "FullNameField": "Fullname"
+    },
+    "soffrontaccount": {
+      "AcctIDField": "AcctID",
+      "CompanyField": "Company",
+      "CustomerStatusValue": "Customer"
+    },
+    "soffrontnote": {
+      "NoteAccessField": "ShowP",
+      "NoteAccessFieldValue": "Yes"
+    },
+    "soffrontapi": {
+      "webapiurl": "localhost",
+      "webdeveloperkey": "U09GRlJPTlRSRVFVRVNUfFBJT1RFQ0hTRVJWRVJ8MnxQSU9URUNIfENSTXw=",
+      "webapi": "WEBAPI2/",
+      "webadminuser": "TrackWebTickets",
+      "webadminuserpassword": "sTeKcItBeWkCaRt",
+      "ServerName": "PIOTECHSERVER",
+      "ProjectName": "PIOTECH",
+      "APPType" :"PORTAL"
+    },
+    "KBUrl": "https://sf104.soffront.com/KMSIPCRM/SQLTRACKSERVER/KB/KMS_IPCRM",
+    "showAttachment": true,
+    "showNote": true,
+    "showSeverity": true,
+    "showDefect": true,
+    "showAudit": true,
+    "showPrint": true,
+    "showWatch": true,
+    "showMenuDefect": false,
+    "showMenuRequest": true,
+    "showMenuContact": true,
+    "showMenuLinks": false,
+    "showKMS": false,
+    "showForgotPassword": true,
+    "showNewUser": false,
+    "setPortalAccess": true,
+    "ShowFooterMsg": true,
+    "showWelcomeMsg": true,
+    "showAddAttachment": true,
+    "showSocialIcon": true,
+    "showSendMailPswd": true,
+    "ticketstatusqueryconfig": {
+    "closedStatus": "CLOSED",
+    "waitingCustomerReplyStatus": "Eng Enhancement,Escalated",
+    "openStatus": "Open,Assigned,Agent Queue,Analyst Responded,Customer Responded,Enhancement Request,Group Queue,Sustainment,Tier 3 Triage,Waiting Analyst Reply,Customer Responded,Reopened,Waiting Customer Reply,Waiting Customer Verification",
+    "resolvedStatus": "RESOLVED",
+    "defectStatus": "DEFECT"   
+    },
+    "dataTableConfig":
+    {
+      "pageLength": 5,
+      "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]]
+    }
+}

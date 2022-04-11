@@ -1,0 +1,132 @@
+<div id="content">
+    <div class="row">
+        <sa-big-breadcrumbs [items]="['Contact Profile']" icon="user" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align: right">
+            <button (click)="updateprofile()" class="btn btn-success my-2" [disabled]="loading===true" type="button">
+                Save Contact Profile
+            </button>
+        </div>
+    </div>
+
+    <section>
+        <div class="row">
+                <div class="col-xs-24 col-sm-10 col-md-10 col-lg-10">
+                <form class="smart-form">
+                    <fieldset>
+                        <section>
+                            <label class="label">
+                                <strong>First Name</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.FName" [ngModelOptions]="{standalone: true}" placeholder="Please enter First name" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq" disabled></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Last Name</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.LName" [ngModelOptions]="{standalone: true}" placeholder="Please enter LastName" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq" disabled></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Email</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.email" [ngModelOptions]="{standalone: true}" placeholder="Please enter email" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Company</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.Company" [ngModelOptions]="{standalone: true}" placeholder="Please enter company" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Address</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.Address1" [ngModelOptions]="{standalone: true}" placeholder="Please enter Address" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Job Title</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.JobTitle" [ngModelOptions]="{standalone: true}" placeholder="Please enter Job Title" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Phone</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.BPhone" [ngModelOptions]="{standalone: true}" placeholder="Please enter Phone" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_Phone" (keypress)="numberOnly($event)" maxlength="10" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Mobile</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.Mobile" [ngModelOptions]="{standalone: true}" placeholder="Please enter Mobile" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_Mobile" (keypress)="numberOnly($event)" maxlength="10" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>City</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.City" [ngModelOptions]="{standalone: true}" placeholder="Please enter City" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Country</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.Country" [ngModelOptions]="{standalone: true}" placeholder="Please enter Country" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq" ></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>State</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.StatePr" [ngModelOptions]="{standalone: true}" placeholder="Please enter State" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">
+                                <strong>Zip</strong>
+                            </label>
+                            <label class="textarea">
+                                <textarea [(ngModel)]="profileinfo.ZipPost" [ngModelOptions]="{standalone: true}" placeholder="Please enter Zip" style="margin-top: 5px;"
+                                    class="form-control" rows="2" id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+                            </label>
+                        </section>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;" [ngClass]="{'display-none' : !loading }">
+    <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+  </div>

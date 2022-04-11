@@ -1,0 +1,177 @@
+<!-- <div>   
+       <div><label class="">Please take our survey. </label>&nbsp;&nbsp; <button class="btn btn-primary btn-sm" type="button" [disabled]="loading===true" (click)="functicketclose()"  > No Thanks </button></div>
+   
+    <fieldset style="background: transparent;">
+        <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loading }">
+          <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+        </div>
+        
+  <div class="row">
+    <section>
+        <label class="label">1.   Please rate how satisfied you were with the level of support received from {{AssignTo}} </label>
+        <div class="rating">
+          <input type="radio" name="stars-rating" id="stars-rating-5" [value]="5"  [(ngModel)]="starsratingcus" >
+          <label for="stars-rating-5">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 85%;">Very Satisfied</b>
+          <input type="radio" name="stars-rating" id="stars-rating-4" [value]="4"  [(ngModel)]="starsratingcus">
+          <label for="stars-rating-4">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 80%;">Satisfied</b>
+          <input type="radio" name="stars-rating" id="stars-rating-3" [value]="3"  [(ngModel)]="starsratingcus">
+          <label for="stars-rating-3">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 59%;">Somewhat Satisfied</b>
+          <input type="radio" name="stars-rating" id="stars-rating-2" [value]="2"  [(ngModel)]="starsratingcus">
+          <label for="stars-rating-2">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 65%;">Dissatisfied</b>
+          <input type="radio" name="stars-rating" id="stars-rating-1" [value]="1"  [(ngModel)]="starsratingcus">
+          <label for="stars-rating-1">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 52%;">Very Dissatisfied</b>
+          Rating
+        </div>
+    </section>
+    <section>
+      <label class="label">Is there anything {{AssignTo}} could have done to improve your experience? </label>
+      <br/><label class="textarea">
+          <textarea  [(ngModel)]="expAnalyst_note"  name="expAnalyst_note"></textarea>
+      </label>
+    </section>
+    <section>
+        <label class="label">2.   Please rate how satisfied you were with the provided solution    </label>
+        <div class="rating">
+          <input type="radio" name="stars-ratings" id="stars-rating-15" [value]="5"  [(ngModel)]="starsrating" >
+          <label for="stars-rating-15">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 85%;">Very Satisfied</b>
+          <input type="radio" name="stars-ratings" id="stars-rating-14"  [value]="4" [(ngModel)]="starsrating" >
+          <label for="stars-rating-14">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 80%;">Satisfied</b>
+          <input type="radio" name="stars-ratings" id="stars-rating-13"  [value]="3"  [(ngModel)]="starsrating">
+          <label for="stars-rating-13">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 59%;">Somewhat Satisfied</b>
+          <input type="radio" name="stars-ratings" id="stars-rating-12"  [value]="2" [(ngModel)]="starsrating" >
+          <label for="stars-rating-12">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 65%;">Dissatisfied</b>
+          <input type="radio" name="stars-ratings" id="stars-rating-11"  [value]="1" [(ngModel)]="starsrating" >
+          <label for="stars-rating-11">
+            <i class="fa fa-star"></i>
+          </label>
+          <b class="tooltip tooltip-bottom-right" style="left: 52%;">Very Dissatisfied</b>
+          Rating
+        </div>
+    </section>
+    <section>
+      <label class="label">Please provide any feedback you may have specific to your satisfaction with the provided solution. 
+        </label>
+        <br/>
+      <label class="textarea">
+        <textarea [(ngModel)]="expSupport_note" name="expSupport_note"></textarea>
+      </label>
+    </section>
+  </div>
+  </fieldset>
+  <footer>
+      <button class="btn btn-success" rel="tooltip"  title="Add Location"  type="button" (click)="functiondosurvey()" [disabled]="loading===true"> Save </button>&nbsp;
+      <button class="btn btn-danger" type="button" tooltip-placement="left" uib-tooltip="Print"  (click)="cancelticketclose()"> Cancel </button>&nbsp;
+      
+    </footer>
+</div> -->
+
+
+
+<div>
+   
+  <div><label class="">Please take our survey. </label>&nbsp;&nbsp; <button class="btn btn-primary btn-sm" type="button" [disabled]="loading===true" (click)="functicketclose('no thanks')"  > No Thanks </button></div>
+
+<fieldset style="background: transparent;">
+   <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loading }">
+     <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+   </div>
+   
+<div class="row">
+  <ng-container *ngFor="let q of QData; index as i" [ngSwitch]="true">
+    <section *ngSwitchCase="q.Type==='Boolean'">
+      <label style="width: 220px;" class="label">{{i+1}}.   {{q.Question}}   </label>   
+      <label style="margin-right:5px"><input type="radio" name="DynamicFld_{{q.FormID}}" value="Yes"><span style="margin-left:5px;">Yes</span></label> 
+      <label style="margin-right:5px"><input type="radio" name="DynamicFld_{{q.FormID}}" value="No"><span style="margin-left:5px;">No</span></label>
+    </section>
+    <section class="selectioncss" *ngSwitchCase="q.Type==='Rating'">
+      <label class="label">{{i+1}}.   {{q.Question}}   </label>
+      <div class="rating">
+        <input type="radio" name="DynamicFld_{{q.FormID}}" id="stars-rating-{{q.FormID}}{{i+5}}" value="5">
+        <label for="stars-rating-{{q.FormID}}{{i+5}}">
+          <i class="fa fa-star"></i>
+        </label>
+        <b class="tooltip tooltip-bottom-right" style="left: 85%;">Very Satisfied</b>
+        <input type="radio" name="DynamicFld_{{q.FormID}}" id="stars-rating-{{q.FormID}}{{i+4}}" value="4">
+        <label for="stars-rating-{{q.FormID}}{{i+4}}">
+          <i class="fa fa-star"></i>
+        </label>
+        <b class="tooltip tooltip-bottom-right" style="left: 80%;">Satisfied</b>
+        <input type="radio" name="DynamicFld_{{q.FormID}}" id="stars-rating-{{q.FormID}}{{i+3}}" value="3">
+        <label for="stars-rating-{{q.FormID}}{{i+3}}">
+          <i class="fa fa-star"></i>
+        </label>
+        <b class="tooltip tooltip-bottom-right" style="left: 59%;">Somewhat Satisfied</b>
+        <input type="radio" name="DynamicFld_{{q.FormID}}" id="stars-rating-{{q.FormID}}{{i+2}}" value="2">
+        <label for="stars-rating-{{q.FormID}}{{i+2}}">
+          <i class="fa fa-star"></i>
+        </label>
+        <b class="tooltip tooltip-bottom-right" style="left: 65%;">Dissatisfied</b>
+        <input type="radio" name="DynamicFld_{{q.FormID}}" id="stars-rating-{{q.FormID}}{{i+1}}" value="1">
+        <label for="stars-rating-{{q.FormID}}{{i+1}}">
+          <i class="fa fa-star"></i>
+        </label>
+        <b class="tooltip tooltip-bottom-right" style="left: 52%;">Very Dissatisfied</b>
+        Rating
+      </div>
+  </section>
+  <section class="selectioncss" *ngSwitchCase="q.Type==='Textarea'">
+    <label class="label">{{i+1}}.   {{q.Question}}   </label>
+    <label class="textarea">
+      <textarea  style="height: 90px;" id="DynamicFld_{{q.FormID}}"></textarea>
+    </label>
+  </section>
+  <section class="selectioncss" *ngSwitchCase="q.Type==='Text'">
+    <label class="label">{{i+1}}.   {{q.Question}}   </label>
+    <label class="input">
+      <input type="text"  id="DynamicFld_{{q.FormID}}">
+    </label>
+  </section>
+  
+  <!-- <section *ngSwitchCase="q.Type==='Boolean'">
+    <label class="label">{{i+1}}.  {{q.Question}}   </label>
+    <div>
+      <input type="radio"  name="DynamicFld_{{q.ID}}">
+      <label for="Yes">Yes</label>
+      </div> 
+      <div>
+      <input type="radio" value="No" name="DynamicFld_{{q.ID}}">
+      <label for="No">No</label>
+    </div>
+  </section> -->
+  </ng-container>
+  <!-- <span *ngIf="QData.length<=0">Either survey already submitted or does not exist for this ticket.</span> -->
+</div>
+</fieldset>
+<footer>
+ <button  class="btn btn-success" rel="tooltip"  title="Save"  type="button" (click)="functiondosurvey()" [disabled]="loading===true"> Save </button>&nbsp;
+ <button class="btn btn-danger" type="button" tooltip-placement="left"  title="Cancel"  (click)="cancelticketclose()"> Cancel </button>&nbsp;
+ 
+</footer>
+</div>

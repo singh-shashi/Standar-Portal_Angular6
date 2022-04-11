@@ -1,0 +1,65 @@
+<fieldset style="background: transparent;">
+  <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loading }">
+    <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+  </div>
+  <div class="row d-flex flex-column">
+    <section>
+      <label class="label">
+        Type
+      </label>
+      <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (DefType != '') }">
+        <select name="TypeDef" [(ngModel)]="DefType" class="form-control" style="margin-top: 5px;">
+          <option value="">Please select Type</option>
+          <option value="5010 / 4010 EDI">5010 / 4010 EDI</option>
+          <option value="Bug">Bug</option>
+          <option value="Compliance">Compliance</option>
+          <option value="Feature">Feature</option>
+          <option value="Performance">Performance</option>
+          <option value="Report">Report</option>
+          <option value="Research">Research</option>
+          <option value="Script / Data Edit">Script / Data Edit</option>
+        </select>
+        <i></i>
+      </label>
+    </section>
+    <section>
+      <label class="label">
+        Environment
+      </label>
+      <label class="select">
+        <select name="Environment" [(ngModel)]="Environ" class="form-control" style="margin-top: 5px;">
+          <option value="">Please select Environment</option>
+          <option value="Certification">Certification</option>
+          <option value="Production">Production</option>
+        </select>
+        <i></i>
+      </label>
+    </section>
+    <section>
+      <label class="label">Summary</label>
+      <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (Synopsis != '') }">
+        <input type="text" [(ngModel)]="Synopsis" name="synopsys">
+      </label>
+    </section>
+    <section>
+      <label class="label">Details</label>
+      <label class="textarea">
+        <textarea [(ngModel)]="Details" name="details"></textarea>
+      </label>
+    </section>
+    <section>
+      <label class="label">Steps</label>
+      <label class="textarea">
+        <textarea [(ngModel)]="Steps" name="step"></textarea>
+      </label>
+    </section>
+  </div>
+</fieldset>
+<footer>
+  <button [disabled]="loading" (click)="savedefect()" class="btn btn-outline-success" type="button">
+    Save
+  </button>
+  <button [disabled]="loading" (click)="cancelform()" class="btn btn-outline-danger" type="button">
+    Cancel
+  </button>
+</footer>

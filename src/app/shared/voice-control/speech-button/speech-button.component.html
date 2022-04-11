@@ -1,0 +1,80 @@
+<div id="speech-btn" class="btn-header btn-header-info transparent pull-right hidden-sm hidden-xs" *ngIf="enabled">
+  <div [popover]="speechPopover">
+    <a title="Voice Command" id="voice-command-btn" (click)="toggleVoiceControl()">
+      <i class="fa fa-microphone"></i>
+    </a>
+  </div>
+  <popover-content #speechPopover [closeOnClickOutside]="true" placement="bottom">
+    <ng-template [ngIf]="!hasError">
+      <h4 class="vc-title">Voice command activated
+        <br/>
+        <small>Please speak clearly into the mic</small>
+      </h4>
+      <a (click)="openHelpModal()" class="btn btn-success">See Commands</a>
+      <a class="btn bg-color-purple txt-color-white" (click)="speechPopover.hide()">Close Popup</a>
+    </ng-template>
+    <ng-template [ngIf]="hasError">
+      <h4 class="vc-title-error text-center">
+        <i class="fa fa-microphone-slash"></i> Voice command failed
+        <br/>
+        <small class="txt-color-red">Must
+          <strong>"Allow"</strong> Microphone</small>
+        <br/>
+        <small class="txt-color-red">Must have
+          <strong>Internet Connection</strong>
+        </small>
+      </h4>
+    </ng-template>
+  </popover-content>
+</div>
+
+
+<ng-template #helpTemplate>
+  <div class="modal-body">
+
+    <h1>
+      <i class="fa fa-microphone text-muted"></i>&nbsp;&nbsp; Voice Commands</h1>
+    <hr class="simple">
+    <ul>
+      <li>
+        <strong>'show' </strong> then say the
+        <strong>*page*</strong> you want to go to. For example
+        <strong>"show dashboard"
+        </strong> or
+        <strong>"show my open tickets"</strong>
+      </li>
+      <li>
+        <strong>'mute' </strong> - mutes all sound effects for the theme.
+      </li>
+      <li>
+        <strong>'sound on'</strong> - unmutes all sound effects for the theme.
+      </li>
+      <li>
+        <span class="text-danger">
+          <strong>'stop'</strong>
+        </span> - deactivates voice command.
+      </li>
+      <li>
+        <strong>'hide navigation'</strong> - toggle navigation collapse
+      </li>
+      <li>
+        <strong>'show navigation'</strong> - toggle navigation to open (can be used again to close)
+      </li>
+      <li>
+        <strong>'scroll up'</strong> - scrolls to the top of the page
+      </li>
+      <li>
+        <strong>'scroll down'</strong> - scrollts to the bottom of the page
+      </li>
+      <li>
+        <strong>'go back' </strong> - goes back in history (history -1 click)
+      </li>
+      <li>
+        <strong>'logout'</strong> - logs you out
+      </li>
+    </ul>
+    <br>
+
+
+  </div>
+</ng-template>

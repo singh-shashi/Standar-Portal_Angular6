@@ -1,0 +1,22 @@
+
+.head-text {
+    font-family: 'Poppins', Arial, Helvetica, Sans-Serif;
+    line-height: 32px;
+}
+
+.project-context>:first-child {
+    font-size: 15px;
+}
+
+.project-selector {
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.dropdown-menu {
+    min-width: 350px !important;
+}
+
+.dropdown-menu>li>a {
+    font-size: 15px;
+}

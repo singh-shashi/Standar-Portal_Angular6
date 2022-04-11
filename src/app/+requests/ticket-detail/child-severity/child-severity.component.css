@@ -1,0 +1,23 @@
+.rating label:hover + .tooltip {
+    opacity: 1;
+}
+
+.tooltip
+{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 75%;
+}
+
+.divtex{
+    display: block;
+    margin-bottom: 0.4rem;
+    line-height: 19px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #315596;
+    text-align: justify;
+    white-space: normal;
+    letter-spacing: 0.02rem;
+}

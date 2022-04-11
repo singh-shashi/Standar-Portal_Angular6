@@ -1,0 +1,170 @@
+<div id="content">
+  <div class="row">
+      <!-- <a (click)="FullrefreshWidget()" class="dashboard-refresh-icon">
+          <i class="fas fa-redo fa-sm text-success fa-fw" style="cursor: pointer;"></i>
+        </a> -->
+        <table style="width: 100%">
+          <tr>
+        <td style="width:13%">
+    <sa-big-breadcrumbs [items]="['Dashboard']" icon="home" class="col-xs-8 col-sm-8 col-md-2 col-lg-2  m-auto"
+      style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></sa-big-breadcrumbs></td>
+      <td style="width:5%">
+      <div>
+        <a title="Refresh" (click)="FullrefreshWidget()" class="dashboard-refresh-icon">
+          <i class="fas fa-redo fa-sm text-success fa-fw"></i>
+        </a>
+      </div>
+    </td>
+    <td style="width:25%">
+    <div>
+      <button title="Add Widgets" [hidden]="loggedInUser.contact.PAccessTyp.trim().toLowerCase()!='admin'" type="button" class="btn btn-outline-dark btn-sm shadow rounded p-1" (click)="operAddWidgetDialog()">
+        <i class="far fa-list-alt fa-fw fa-sm"></i>&nbsp;Add Widgets
+      </button>
+    </div>
+  </td>
+  <td style="width:57%">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-auto">
+      <form class="navbar-form w-50 float-right" role="search">
+        <div class="input-group input-group-sm">
+          <input #searchText type="text" required="required" (keydown.enter)="SearchByKeyEnter($event,searchText.value)"
+            class="form-control" placeholder="Search by Ticket ID">
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="searchRequest(searchText.value)">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </td>
+  </tr>
+  </table>
+  </div>
+  <section id="widgets-grid">
+    <div class="row">
+      <article #allWidgetColumns class="col-sm-12 col-md-6 col-lg-4 padding-5 sortable-grid ui-sortable"
+        *ngFor="let widgets of widgetcolumns; let lst=last;">
+        <div sa-widget [colorbutton]="false" [editbutton]="true" *ngFor="let dashboardWidget of widgets ;"
+          class="margin-bottom-10 shadow rounded" [@flyInOut]="'in'" [collapsed]="dashboardWidget.collapsed"
+          name='wid-id-{{dashboardWidget.name}}'>
+          <header class="rounded">
+            <h2>
+              <span class="oi oi-grid-four-up fa-sm fa-fw text-primary text-justify"></span>
+              <span class="align-top pl-1" style="color: #295152;">{{dashboardWidget.showtitle}}</span>
+            </h2>
+            <div class="widget-toolbar px-0" style="display: none;">
+              <a class="btn btn-link" (click)="refreshWidget(dashboardWidget.type)">
+                <i class="fas fa-redo fa-sm text-success fa-fw"></i>
+              </a>
+            </div>
+            <span class="sfinfo" style="display: none">
+              {{dashboardWidget | json}}
+            </span>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding" [ngSwitch]="dashboardWidget.type">
+              <app-latestnews #latestnews *ngSwitchCase="'NEWS'" [ApiKey]="apiKey" [LoggedInUser]="loggedInUser"
+                [JsonApiService]="jsonApiService"></app-latestnews>
+              <app-latestannouncement #latestannouncement *ngSwitchCase="'ANNOUNCEMENTS'" [ApiKey]="apiKey"
+                [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService"></app-latestannouncement>
+              <app-alldocument #alldocument *ngSwitchCase="'ALLDOCUMENTS'" [ApiKey]="apiKey" 
+              [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService"></app-alldocument>
+              <app-latestcomments #latestcomments *ngSwitchCase="'COMMENTS'" [ApiKey]="apiKey"
+                [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService"></app-latestcomments>
+              <app-KnowladgeSearch #KnowladgeSearch *ngSwitchCase="'KBSEARCH'" [ApiKey]="apiKey"
+                [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService"></app-KnowladgeSearch>
+              <app-statuslist #statuslist *ngSwitchCase="'STATUS'" [ApiKey]="apiKey" [LoggedInUser]="loggedInUser"
+                [JsonApiService]="jsonApiService"></app-statuslist>
+              <app-submit-ticket #submitticket *ngSwitchCase="'QUICKTICKETSUBMIT'" [ApiKey]="apiKey"
+                [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService"></app-submit-ticket>
+              <app-QueryEngine id="{{dashboardWidget.type}}" *ngSwitchCase="'QUERY'" #QueryEngine  [ApiKey]="apiKey"
+                [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService" [QueryData]="dashboardWidget.data">
+              </app-QueryEngine>
+              <app-Submitform #Submitform [ApiKey]="apiKey" *ngSwitchCase="'DATAENTRY'" [LoggedInUser]="loggedInUser"
+                [JsonApiService]="jsonApiService" [formInfo]="dashboardWidget.data" class="ticket-widget">
+              </app-Submitform>
+              <div *ngSwitchDefault>{{dashboardWidget.name}}</div>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+
+    </div>
+  </section>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add More Widgets</h5>
+        <button type="button" class="close" aria-label="Close" (click)="lgModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label for="staticEmail" class="col-4 col-form-label">Widget Type</label>
+          <div class="col-8">
+            <select id="Tic_usrgrp" class="form-controlWidget" (change)="_populatetypewidgets($event)" [(ngModel)]="selectedWidgetType">
+              <option value="">Please select Widget Type</option>
+              <option value="STANDARD">Standard Widget</option>
+              <option value="CRMQUERY">Query Widget</option>
+              <option value="CRMFORM">Data Entry Widget</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="selectedValue =='STANDARD'">
+          <label for="inputPassword" class="col-4 col-form-label">Standard Widgets</label>
+          <div class="col-8">
+            <select id="DefaultName" class="form-controlWidget" #DefaultName>
+              <option value="0">Please select a Standard Widget</option>
+              <option value="STATUS">Status Count</option>
+              <option value="COMMENTS">Latest Comment</option>
+              <option value="NEWS">Latest News</option>
+              <option value="ANNOUNCEMENTS">Latest Announcement</option>
+              <!-- <option value="KBSEARCH">Kb Search</option> -->
+              <!-- <option value="QUICKTICKETSUBMIT">Submit Ticket</option> -->
+              <option value="ALLDOCUMENTS">Latest Document</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="(selectedValue =='CRMQUERY' || selectedValue =='CRMFORM')">
+          <label for="inputPassword" class="col-4 col-form-label">CRM Objects</label>
+          <div class="col-8">
+            <select id="objName" class="form-controlWidget" (change)="_populateQueryName($event)" #objName>
+              <option value="">Please select an Object</option>
+              <option *ngFor="let obj of objData" value="{{obj.Name}}">{{obj.DisplayName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="!hiddenQuery" *ngIf="selectedValue =='CRMQUERY'">
+          <label for="inputPassword" class="col-4 col-form-label">Query List</label>
+          <div class="col-8">
+            <select id="QueryName" class="form-controlWidget" #QueryName>
+              <option value="">Please select a Query</option>
+              <option *ngFor="let Q of oQuery" value="{{Q.ID}}">{{Q.Name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row"
+          *ngIf="(selectedValue =='CRMQUERY' || selectedValue =='CRMFORM' || selectedValue =='STANDARD')">
+          <label class="col-4 col-form-label">Widget Title</label>
+          <div class="col-8">
+            <input type="text" class="form-controlWidget" #WidgetTitle>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" *ngIf="selectedValue !=''" (click)="Addwidget()">Add</button>
+          <button type="button" class="btn btn-danger" (click)="CloseModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,261 @@
+<div class="widget-body-toolbar mainnavbar noprint">
+  <div class="row">
+    <div class="col-sm-4 col-lg-4">
+      <div class="btn-group rounded-lg shadow">
+        <button type="button" class="btn btn-outline-info" title="Audit Trail" (click)="OpenForm('AUDITTRAIL', 'Audit Trail')">
+          <i class="fas fa-road fa-fw"></i>
+        </button>
+
+        <button type="button" class="btn btn-outline-secondary" title="Print" onclick="window.print()">
+          <i class="fas fa-print fa-fw"></i>
+        </button>
+
+        <button type="button" class="btn btn-outline-success" title="Attachments" (click)="OpenChildren('TRDOCMNT', 'Attachments')">
+          <i class="fas fa-paperclip fa-fw"></i>
+        </button>
+  
+
+        <!-- <button type="button" class="btn btn-info" title="Watch By" (click)="OpenForm('WATCHBY','Watch By')">
+          <i class="fa fa-eye fa-fw"></i>
+        </button> -->
+      </div>
+    </div>
+    <div class="col-sm-2 col-lg-2">
+
+    </div>
+    <div class="col-sm-6 col-lg-6">
+      <!-- <button type="button" (click)="searchKB()" class="btn btn-outline-success btn-sm pull-right" style="margin-left: 1%;">
+        <i class="fas fa-search"></i>&nbsp;Search Solution
+      </button> -->
+      <button type="button" (click)="OpenForm('CLOSEDTIC','Ticket Close')" class="btn btn-outline-success btn-sm pull-right" [ngClass]="{'display-none' : (ticket_data.Status!='Resolved') }"
+        style="margin-left: 1%;">
+        <i class="far fa-times-circle fa-lg"></i>&nbsp;
+        Close Ticket
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <article [ngClass]="{'col-sm-8 col-lg-8' : ShowChildrenAside, 'col-sm-12 col-lg-12': !ShowChildrenAside }">
+    <div class="widget-body-toolbar subnavbar noprint p-0">
+      <div class="row p-0">
+        <div class="col-sm-9 col-lg-9 p-0">
+          <div class="navbar navbar-default p-0 lead-sm">
+            <ul class="nav navbar-nav w-100 d-flex flex-row ml-3">
+              <li title="Attachments" class="nav-item text-dark active border-danger rounded-0 py-1" [hidden]="!showAttach" [ngClass]="{'active border-bottom' : (ShowChildren == 'TRDOCMNT') }">
+                <a href="javascript:void(0);" class="nav-link" (click)="OpenChildren('TRDOCMNT', 'Attachments')">
+                    <i class="far fa-folder-open"></i>&nbsp;Attachments
+                </a>
+              </li>
+              <li title="Notes" class="nav-item text-dark active border-danger rounded-0 py-1" [hidden]="!showNotes" [ngClass]="{'active border-bottom' : (ShowChildren == 'NOTE') }">
+                <a href="javascript:void(0);" class="nav-link" (click)="OpenChildren('NOTE', 'Notes')">
+                    <i class="far fa-comments"></i>&nbsp;Notes
+                </a>
+              </li>
+              <li title="Survey" class="nav-item text-dark active border-danger rounded-0 py-1" [hidden]="!showSeveritys" [ngClass]="{'active border-bottom' : (ShowChildren == 'TICKET') }">
+                <a href="javascript:void(0);" class="nav-link" (click)="OpenForm('TICKETREMARK','Ticket Survey')">
+                    <i class="far fa-star"></i>&nbsp;Survey
+                </a>
+              </li>
+              <!-- <li title="Defects" class="nav-item text-dark active border-danger rounded-0 py-1" [hidden]="!showDef" [ngClass]="{'active border-bottom' : (ShowChildren == 'DEFECT') }">
+                <a href="javascript:void(0);" class="nav-link" (click)="OpenChildren('DEFECT', 'Defects')">
+                    <i class="fas fa-bug"></i>&nbsp;Defects
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-lg-3">
+          <a href="javascript:void(0);" class="btn btn-link" style="float: right; margin-right: 1%;" (click)="BacktoList()">
+            <i class="far fa-times-circle fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- widget content -->
+    <div class="smart-form">
+      <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loading }">
+        <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+      </div>
+      <!-- <header style="background: transparent;">
+        <h2>Ticket #{{ticket_data.TicketID}}</h2>
+      </header> -->
+      <fieldset style="background: transparent;">
+        <!-- <legend>
+          <strong>Lifecycle Details</strong>
+        </legend> -->
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Status</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.Status" readonly value="{{ticket_data.Status}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Product</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.P" readonly value="{{ticket_data.P}}">
+            </label>
+          </section>
+        </div>
+        <!-- <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Severity</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.Severity" readonly value="{{ticket_data.Severity}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Orginal Due Date</label>
+            <label class="input">
+              <input type="text" [ngModel]="ticket_data.OrgDD | date:'dd MMM yyyy'"  (ngModelChange)="ticket_data.OrgDD = $event"
+              readonly>
+            </label>
+          </section>
+        </div> -->
+        <!-- <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Account</label>
+            <label class="input">
+              <input type="text" [ngModel]="ticket_data.CallTime | date:'dd MMM yyyy'" (ngModelChange)="ticket_data.CallTime = $event"
+                readonly>
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">SN#</label>
+            <label class="input">
+              <input type="text" [ngModel]="ticket_data.Closedat | date:'dd MMM yyyy'" (ngModelChange)="ticket_data.Closedat = $event"
+                readonly>
+            </label>
+          </section>
+        </div> -->
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Category</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.Category" readonly value="{{ticket_data.Category}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Priority</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.Priority" readonly value="{{ticket_data.Priority}}">
+            </label>
+          </section>
+        </div> 
+        <!-- <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Sub</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.SiteGroup" readonly value="{{ticket_data.SiteGroup}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Contact</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.ContctName" readonly value="{{ticket_data.ContctName}}">
+            </label>
+          </section>
+        </div>  -->
+        <div class="row">    
+          <section class="col col-lg-6">
+            <label class="label">Creator</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.EndUser" readonly value="{{ticket_data.EndUser}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Assign To</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.AssignTo" readonly value="{{ticket_data.AssignTo}}">
+            </label>
+          </section>
+        </div> 
+        
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Open</label>
+            <label class="input">
+              <input type="text" [ngModel]="ticket_data.CallTime | date:'dd MMM yyyy'"  (ngModelChange)="ticket_data.CallTime = $event"
+              readonly>
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Closed</label>
+            <label class="input">
+              <input type="text" [ngModel]="ticket_data.Closedat | date:'dd MMM yyyy'" (ngModelChange)="ticket_data.Closedat = $event"
+              readonly>
+            </label>
+          </section>
+        </div>     
+      </fieldset>
+      <fieldset style="background: transparent;">
+        <legend>
+          <strong>Request Detail</strong>
+        </legend>
+        <div class="row">
+          <section class="col col-lg-10">
+            <label class="label">Synopsis</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="ticket_data.Synopsis" readonly value="{{ticket_data.Synopsis}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-10">
+            <label class="label">Description</label>
+            <label class="textarea">
+              <i class="icon-append far fa-comment fa-lg text-info fa-fw"></i>
+              <textarea rows="4" [(ngModel)]="ticket_data.Detail" readonly value="{{ticket_data.Detail}}"></textarea>
+            </label>
+          </section>
+        </div>
+      </fieldset>
+    </div>
+    <!-- end widget body-->
+  </article>
+  <article class="col-sm-4 col-lg-4 childarticle noprint" [ngClass]="{'display-none' : !ShowChildrenAside }">
+    <div class="widget-body-toolbar subnavbar py-2">
+      <div class="row p-1 lead-sm">
+        <div class="col-sm-7 col-lg-7 p-0 m-0 text-danger font-weight-bolder">{{!ShowChildForm ? 'Latest ' + ShowChildrenTitle : ShowChildrenTitle}}</div>
+        <div class="col-sm-5 col-lg-5 p-0 m-0">
+          <button type="button" class="btn btn-link p-0" style="float: right;" [ngClass]="{'display-none' : !ShowChildAdd}"
+            (click)="OpenForm('ADD','Add')">
+            <i class="far" [ngClass]="{'fa-comment-alt' : (ShowChildren === 'NOTE'), 'fa-file' : (ShowChildren !== 'NOTE')}"></i>&nbsp;
+            {{ (ShowChildren == 'NOTE' ? 'Add Note' : ShowChildren == 'TRDOCMNT' ? 'Upload Files' : ShowChildren == 'DEFECT' ?
+            'NEW': 'Add')}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loadingChildren }">
+      <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+    </div>
+    <div class="" [ngClass]="{'d-flex flex-wrap' : ShowChildren == 'TRDOCMNT' }" [ngSwitch]="ShowChildren">
+      <div class="" [ngClass]="{'attachments flex-fill' : ShowChildren == 'TRDOCMNT' }" *ngFor="let ChildRecord of ChildRecords">
+          <app-childnote *ngSwitchCase="'NOTE'" [ChildNoteRecord]="ChildRecord" [SelectedNoteID]="SelectedNoteID"></app-childnote>
+          <app-childdefect *ngSwitchCase="'DEFECT'" [ChildDefectRecord]="ChildRecord"></app-childdefect>
+          <app-childattachment *ngSwitchCase="'TRDOCMNT'" [ChildAttachmentRecord]="ChildRecord" [TicketID]="ticket_data.TicketID"></app-childattachment>
+      </div>
+    </div>
+    <div class="" *ngIf="(ChildRecords.length <= 0 && !ShowChildForm && !loadingChildren)">
+      <i>No records found</i>
+    </div>
+    <div class="smart-form" *ngIf="ShowChildForm" [ngSwitch]="ShowChildren">
+      <app-childwatchby [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" (onCancelwatchbyform)="ResetDetailView()"
+        *ngSwitchCase="'WATCHBY'"></app-childwatchby>
+      <app-addnote [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" (onCancelnoteform)="OpenChildren('NOTE', 'Notes')"
+        *ngSwitchCase="'ADDNOTE'"></app-addnote>
+      <app-childaudittrail [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" *ngSwitchCase="'AUDITTRAIL'"></app-childaudittrail>
+      <app-closeticket [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" [AssignTo]="ticket_data.AssignTo" (onrefreshdetailviewform)="BacktoList()"
+        (onCancelcloseticform)="ResetDetailView()" *ngSwitchCase="'CLOSEDTIC'"></app-closeticket>
+        <app-childseverity [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" [Status]="ticket_data.Status" (onrefreshdetailviewform)="BacktoList()"
+        (onCancelcloseticform)="ResetDetailView()" *ngSwitchCase="'TICKETREMARK'"></app-childseverity>
+      <app-add-attachment [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" [AttachFile]="ChildRecords" (onCancelattachform)="OpenChildren('TRDOCMNT', 'Attachments')"
+        *ngSwitchCase="'ADDTRDOCMNT'"></app-add-attachment>
+      <app-add-defect [ApiKey]="ApiKey" [JsonApiService]="JsonApiService" [TicketID]="ticket_data.TicketID" (onCanceldefectform)="OpenChildren('DEFECT', 'Defects')"
+        *ngSwitchCase="'ADDDEFECT'"></app-add-defect>
+    </div>
+  </article>
+</div>

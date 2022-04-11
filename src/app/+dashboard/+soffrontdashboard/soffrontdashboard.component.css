@@ -1,0 +1,54 @@
+/*-----------custom css added--------------*/
+
+
+.smart-style-4 aside .minifyme  {
+    background-color: #b0b0b0;
+}
+.minified nav>ul>li  {
+    padding-top:8px;
+    padding-bottom:8px;
+    border-top:0;
+    border-bottom:0;
+}
+.ng-tns-c5-1  {
+    border: 0;
+    font-style: normal;
+}
+
+.table-status > tr > td  {
+    border-top:0;
+}
+.jarviswidget > div  {
+    box-shadow: 0px 2px 3px #ccc;
+    margin-top: 2px;
+}
+.jarviswidget-ctrls .button-icon  {
+    border-left:0;
+}
+.widget-toolbar  {
+    border-left:0;
+}
+
+.form-group .btn-success  {
+    background-color: #1D2951;
+    border-color: #1D2951;
+}
+.jarviswidget>header  {
+  box-shadow:0 0 12px #ddd;
+}
+
+.form-controlWidget
+{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

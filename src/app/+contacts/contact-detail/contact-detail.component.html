@@ -1,0 +1,343 @@
+<div class="widget-body-toolbar mainnavbar noprint">
+  <div class="row">
+    <div class="col-sm-4 col-lg-4">
+      <div [ngClass]="{'btn-group display-none' : (EditMode == null), 'btn-group' : (EditMode != null) }">
+        <button type="button" class="btn btn-info" title="Edit" (click)="OpenModifyContact()" [disabled]="!hasAddPermission">
+          <i class="fa fa-edit fa-fw"></i>
+        </button>
+
+        <button type="button" class="btn btn-info" title="Print" onClick="window.print()">
+          <i class="fa fa-print fa-fw"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-2 col-lg-2">
+
+    </div>
+    <div class="col-sm-6 col-lg-6">
+
+    </div>
+  </div>
+</div>
+<section>
+  <div class="row">
+    <article [ngClass]="{'col-sm-8 col-lg-8' : ShowChildrenAside, 'col-sm-12 col-lg-12': !ShowChildrenAside }">
+      <div class="widget-body-toolbar subnavbar noprint">
+        <div class="row">
+          <div class="col-sm-9 col-lg-9">
+            <!-- <div [ngClass]="{'navbar navbar-default display-none' : (EditMode == null), 'navbar navbar-default' : (EditMode != null) }">
+              <ul class="nav navbar-nav">
+                <li title="Ship Items" [ngClass]="{'active' : (ShowChildren == 'SHIPITEM') }">
+                  <a href="javascript:void(0);" class="btn-info" (click)="OpenChildren()">
+                    <h3>
+                      <i class="fa fa-truck"></i>&nbsp;Shipped Items</h3>
+                  </a>
+                </li>
+              </ul>
+            </div> -->
+
+            <div [ngClass]="{'btn-group' : (EditMode == null), 'btn-group display-none' : (EditMode != null) }">
+              <button type="button" class="btn btn-success" [disabled]="loading===true" (click)="SaveContact()" style="margin-bottom: 15px;">
+                Save
+              </button>
+              <button type="button" class="btn btn-danger" [disabled]="loading===true" (click)="CancelModifyForm()" style="margin-bottom: 15px;">
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <a href="javascript:void(0);" class="btn btn-link" style="float: right; margin-right: 1%;" (click)="BacktoList()">
+              <i class="far fa-times-circle fa-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- widget content -->
+      <div class="well smart-form">
+        <div style="width: 100%; height: 100%;" [ngClass]="{'display-none' : !loading }">
+          <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+        </div>
+        <header style="background: transparent;">
+          <h2>{{EditMode == null ? 'Modify' : ''}}&nbsp;Contact #{{contact_data.Contact}}</h2>
+        </header>
+        <fieldset style="background: transparent;">
+          <legend>
+            <strong>
+              Identifying Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Status</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Status" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Status = $event">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Role</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.ConRole" [disabled]="EditMode != null" (ngModelChange)="ContactData.ConRole = $event">
+                  <option value="Decision Maker">Decision Maker</option>
+                  <option value="Project Manager">Project Manager</option>
+                  <option value="Recommends">Recommends</option>
+                  <option value="Requestor">Requestor</option>                
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">Contact ID</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Contact" readonly>
+              </label>
+            </section>
+            <section class="col col-lg-8">
+              <label class="label">Company</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Company" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Company = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">Salutation</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.MrMs" [disabled]="EditMode != null" (ngModelChange)="ContactData.MrMs = $event">
+                  <option value="Dr">Dr</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="MS">MS</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">First Name</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.FName" [attr.readonly]="EditMode" (ngModelChange)="ContactData.FName = $event">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Last Name</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.LName" [attr.readonly]="EditMode" (ngModelChange)="ContactData.LName = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-8">
+              <label class="label">Job Title</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.JobTitle" [attr.readonly]="EditMode" (ngModelChange)="ContactData.JobTitle = $event">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Full Name</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.FullName" [attr.readonly]="EditMode" (ngModelChange)="ContactData.FullName = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+           
+            <!-- <section class="col col-lg-4">
+              <label class="label">Affilliate</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.Resellee" [disabled]="EditMode != null" (ngModelChange)="ContactData.Resellee = $event">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section> -->
+          </div>
+        </fieldset>
+        <fieldset style="background: transparent;">
+          <legend>
+            <strong>
+              Contact Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Address1</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Address1" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Address1 = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Address2</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Address2" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Address2 = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">City</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.City" [attr.readonly]="EditMode" (ngModelChange)="ContactData.City = $event">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">State</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.StatePr" [attr.readonly]="EditMode" (ngModelChange)="ContactData.StatePr = $event">
+              </label>
+            </section>           
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Country</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Country" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Country = $event">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Zip</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.ZipPost" [attr.readonly]="EditMode" (ngModelChange)="ContactData.ZipPost = $event">
+              </label>
+            </section>
+            <!-- <section class="col col-lg-4">
+              <label class="label">Location</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Location" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Location = $event">
+              </label>
+            </section> -->
+          </div>
+          <div class="row">
+            <!-- <section class="col col-lg-6">
+              <label class="label">Direct Phone</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.BPhone" [attr.readonly]="EditMode" (ngModelChange)="ContactData.BPhone = $event">
+              </label>
+            </section> -->
+            <section class="col col-lg-6">
+              <label class="label">Main Phone</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.BPhone" [attr.readonly]="EditMode" (ngModelChange)="ContactData.BPhone = $event">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Mobile Phone</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Mobile" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Mobile = $event">
+              </label>
+            </section>
+          </div>
+          <div class="row">            
+            <section class="col col-lg-6">
+              <label class="label">Email</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.email" [attr.readonly]="EditMode" (ngModelChange)="ContactData.email = $event">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Email Status</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.Nletstat" [disabled]="EditMode != null" (ngModelChange)="ContactData.Nletstat = $event">
+                  <option value="Bounced">Bounced</option>
+                  <option value="Good">Good</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Fax</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Fax" [attr.readonly]="EditMode" (ngModelChange)="ContactData.Fax = $event">
+              </label>
+            </section>
+          
+          </div>
+        </fieldset>
+        <fieldset style="background: transparent;">
+          <legend>
+            <strong>
+              Portal & Support Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Portal Access</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.PortalAcc" [disabled]="EditMode != null" (ngModelChange)="ContactData.PortalAcc = $event">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <!-- <section class="col col-lg-6">
+              <label class="label">Receive Release Notes?</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.RelNotif" [disabled]="EditMode != null" (ngModelChange)="ContactData.RelNotif = $event">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section> -->
+            <section class="col col-lg-6">
+              <label class="label">Portal Access Type</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.PAccessTyp" [disabled]="EditMode != null" (ngModelChange)="ContactData.PAccessTyp = $event">
+                  <option value="admin">Admin</option>
+                  <option value="Portal User">User</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <!-- <section class="col col-lg-6">
+              <label class="label">Receive Downtime Notifications?</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.DownNotif" [disabled]="EditMode != null" (ngModelChange)="ContactData.DownNotif = $event">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section> -->
+            <!-- <section class="col col-lg-4">
+              <label class="label">ADDITIONAL INFORMATION</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.AddlInfo" [attr.readonly]="EditMode" (ngModelChange)="ContactData.AddlInfo = $event">
+              </label>
+            </section> -->
+          </div>
+        </fieldset>
+      </div>
+      <!-- end widget body-->
+    </article>
+    <article class="col-sm-4 col-lg-4 childarticle noprint" [ngClass]="{'display-none' : !ShowChildrenAside }">
+      <div class="widget-body-toolbar subnavbar">
+        <div class="row">
+          <div class="col-sm-7 col-lg-7">
+            <h3 class="margin-top-0 margin-bottom-0 detailViewChildHeader lead-sm">{{!ShowChildForm ? 'Latest ' + ShowChildrenTitle : ShowChildrenTitle}}</h3>
+          </div>
+          <div class="col-sm-5 col-lg-5">
+            <button type="button" class="btn btn-labeled btn-success" style="float: right;" [ngClass]="{'display-none' : !ShowChildAdd}">
+              <span class="btn-label">
+                <i class="fa fa-plus"></i>
+              </span>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="well padding-10 margin-bottom-10" *ngFor="let childShipItem of ChildRecords">
+        <app-childshipitem [ChildShipItemRecord]="childShipItem"></app-childshipitem>
+      </div>
+      <div class="well padding-10 margin-bottom-10" *ngIf="ChildRecords.length <= 0">
+        <i>No records found</i>
+      </div>
+    </article>
+  </div>
+</section>

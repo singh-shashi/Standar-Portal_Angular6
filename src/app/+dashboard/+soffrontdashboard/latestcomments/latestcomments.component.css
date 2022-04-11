@@ -1,0 +1,36 @@
+.name>div {
+    white-space: normal;
+    word-break: break-word;
+    margin-top: 3%;
+}
+
+.status .who {
+    border-top: 1px solid #eee !important;
+    border-bottom: 0px !important
+}
+
+.who .fa-comments {
+    font-size: 24px;
+    float: left;
+    margin-right: 6px;
+    color: #a8e667;
+    margin-top: -2px;
+}
+
+.font-md {
+    font-size: 15px !important;
+}
+
+.comment-date-text {font-size: 13px !important;font-family: 'Poppins',Arial,Helvetica,Sans-Serif;font-weight:400;}
+.comment-head {font-size: 14px !important;font-family: 'Poppins',Arial,Helvetica,Sans-Serif;}
+
+
+.comment-head .text-muted {overflow: hidden;width:39%; }
+
+.Rowhover.highlighted {
+    background:  #5868c4;
+    }
+    .Rowhover:hover {
+        background-color:  #bfc4cf;
+        cursor: pointer;
+      }

@@ -1,0 +1,88 @@
+<div id="content">
+  <div class="row">
+    <!-- <sa-big-breadcrumbs [items]="['Requests']" icon="headphones" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs> -->
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 my-auto" style="text-align: right">&nbsp;
+      <!-- <button aria-expanded="true" [className]="showDetail ? '' : 'btn btn-primary dropdown-toggle tog_drop'"
+        [hidden]="showDetail" data-toggle="dropdown" id="SearchViewList">
+        <i class="fa fa-exclamation-circle"></i>
+        <span>&nbsp;</span>
+        <span class="dropdown-text">{{selectedFilter}}</span>
+        <span>&nbsp;</span>
+        <span class="caret"></span>
+      </button>
+      <ul [className]="showDetail ? '' : 'dropdown-menu'" [hidden]="showDetail" for="SearchViewList" role="menu">
+        <li>
+          <a dropdown-menu-value="All" (click)="onSearchViewListChange('All')">All</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a dropdown-menu-value="Open Tickets" (click)="onSearchViewListChange('Open Tickets')">
+            <i class="fa fa-filter"></i>&nbsp;&nbsp;
+            <span>Open Tickets</span>
+          </a>
+        </li>
+        <li>
+          <a dropdown-menu-value="Waiting Customer Reply" (click)="onSearchViewListChange('Waiting Customer Reply')">
+            <i class="fa fa-filter"></i>&nbsp;&nbsp;
+            <span>Waiting Customer Reply</span>
+          </a>
+        </li>
+        <li>
+          <a dropdown-menu-value="Resolved Tickets" (click)="onSearchViewListChange('Resolved Tickets')">
+            <i class="fa fa-filter"></i>&nbsp;&nbsp;
+            <span>Resolved Tickets</span>
+          </a>
+        </li>
+        <li>
+          <a dropdown-menu-value="Closed Tickets" (click)="onSearchViewListChange('Closed Tickets')">
+            <i class="fa fa-filter"></i>&nbsp;&nbsp;
+            <span>Closed Tickets</span>
+          </a>
+        </li>
+        <li>
+          <a dropdown-menu-value="Auto-Closed Tickets" (click)="onSearchViewListChange('Auto-Closed Tickets')">
+            <i class="fa fa-filter"></i>&nbsp;&nbsp;
+            <span>Auto-Closed Tickets</span>
+          </a>
+        </li>
+      </ul>
+      <button type="button" [className]="showDetail ? '' : 'btn btn-labeled btn-success '" [hidden]="showDetail" (click)="OpenSearchForm()">
+        <span class="btn-label">
+          <i class="fa fa-search"></i>
+        </span>
+        Search Requests
+      </button> -->
+    </div>
+  </div>
+  <section>
+    <div class="row">
+      <article class="col-sm-24 col-md-24 col-lg-12 padding-5">
+          <div id='w' class="card" [@flyInOut]="'in'">
+              <div class="card-body">
+                <div class="card-title d-flex noprint p-2 lead-sm">
+                    <div class="flex-fill"><i class="fas fa-headphones-alt"></i>&nbsp; {{TicketInfoDet}}</div>
+                    <div>
+                        <a class="btn btn-link btn-xs text-primary" (click)="reloadDataTable()">
+                            <i class="fas fa-redo"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <app-ticket-list #ticketlist (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelectedTicket($event)" [hidden]="showDetail"
+                    [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [ParentObjName]="parentObjName" [ParentObjID]="parentObjID"
+                    [ObjectStatus]="objectStatus"></app-ticket-list>
+                  <app-ticket-detail (onSetHide)="onShowDetail($event)" [hidden]="!showDetail" [ApiKey]="apiKey" [JsonApiService]="jsonApiService"
+                    [TicketData]="ticketSelected"></app-ticket-detail>
+                </div>
+              </div>
+            </div>
+        <!-- end widget -->
+      </article>
+
+    </div>
+    <article>
+
+    </article>
+  </section>
+
+</div>

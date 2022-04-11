@@ -1,0 +1,81 @@
+<sa-header class="noprint"></sa-header>
+
+
+<sa-navigation class="noprint"></sa-navigation>
+
+
+<div id="main" role="main">
+  <sa-layout-switcher class="display-none"></sa-layout-switcher>
+
+  <sa-ribbon class="noprint"></sa-ribbon>
+
+  <router-outlet></router-outlet>
+</div>
+
+<sa-footer class="noprint"></sa-footer>
+
+<sa-shortcut class="noprint"></sa-shortcut>
+
+<div id="bottomPanel" aria-label="Bottom Panel" class="btn-group btn-group-lg p-3 border-top border-left border-right rounded-top shadow-lg border-light bg-white display-none"
+  role="group" style="position: fixed;bottom: 0px;right: 30px;z-index: 9999;">
+  <button class="btn btn-lg btn-outline-primary rounded-pill mr-2" id="lnkAskForHelp" style="cursor: pointer;" title="Chat"
+    type="button">
+    <i class="far fa-2x fa-comment-alt"></i>
+  </button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-lg btn-outline-danger rounded-pill">
+    <i class="fa fa-2x fa-chevron-up"></i>
+  </button>
+</div>
+<div class="chatmodal display-none">
+  <div class="shadow-lg">
+    <div class="card display-none p-0 d-flex flex-column">
+      <div class="card-header p-2 d-flex border-bottom text-info shadow">
+        <h5 class="flex-fill m-0 px-2 lead font-weight-bolder font-italic" style="font-size: 130%;">
+          <i class="fa fa-comment"></i>&nbsp;Chat
+        </h5>
+        <button id="closeModal" type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="card-text p-0 flex-fill">
+        <div class="p-0">
+          <ul id="chatmessages" class="m-0 p-0" style="height: 250px;overflow-y: auto;overflow-x: hidden;"></ul>
+        </div>
+      </div>
+      <div class="card-footer m-0 p-2">
+        <div class="input-group input-group-lg shadow">
+          <input type="text" id="msg-addon2" class="form-control" placeholder="Enter text" aria-label="Enter text"
+            aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" id="button-addon2">Send</button>
+          </div>
+        </div>
+        <em><small id="isTyping">&nbsp;</small></em>
+      </div>
+      <div class="chatwaiting text-center text-info">
+        <div>
+          <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="lead text-danger font-italic">Waiting for representative ... </div>
+        <div class=""><button class="btn btn-danger" id="cancelRequest">Cancel</button></div>
+      </div>
+    </div>
+  </div>
+</div>

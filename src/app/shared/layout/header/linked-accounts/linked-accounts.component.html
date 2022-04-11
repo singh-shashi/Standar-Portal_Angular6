@@ -1,0 +1,16 @@
+<div class="project-context hide-md dropdown p-2 px-3 mt-2 mb-1 text-success" dropdown>
+  <span class="project-selector dropdown-toggle d-flex" dropdownToggle>
+    <i class="far fa-folder-open my-auto"></i>&nbsp;<div>{{selectedlinkedaccount.Company}}</div>
+    <i class="fas fa-chevron-down my-auto mx-2"></i>
+  </span>
+
+  <ul *dropdownMenu class="dropdown-menu">
+    <li *ngFor="let account of linkedaccounts" class="px-4">
+      <a href="#" (click)="changeSelectedAccount(account)">
+        <i class="far"
+          [ngClass]="{'fa-folder-open': account.Company == selectedlinkedaccount.Company, 'fa-folder': account.Company != selectedlinkedaccount.Company }"></i>
+        &nbsp;{{account.Company}}
+      </a>
+    </li>
+  </ul>
+</div>

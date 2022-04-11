@@ -1,0 +1,68 @@
+.navbar .divider-vertical {
+    height: 4em;
+    margin: 0 9px;
+    border-right: 1px solid #ffffff;
+    border-left: 1px solid #e2e2e2;
+}
+
+.navbar-inverse .divider-vertical {
+    border-right-color: #222222;
+    border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse .nav>.divider-vertical {
+        display: none;
+    }
+}
+
+.navbar-nav>li {
+    float: left;
+    position: relative;
+    opacity: 0.6;
+}
+
+.navbar-default {
+    display: inline-block;
+    margin-bottom: 0px;
+    background: transparent;
+    border: 0;
+}
+
+.navbar-default .active {
+    background: transparent;
+    opacity: 1;
+}
+
+.navbar-default .active a {
+    padding-bottom: 2px;
+}
+
+.mainnavbar {
+    background-color: #f6f6f6;
+}
+
+.subnavbar {
+    background-color: #fafafa;
+}
+
+.navbar-default .active a::after {
+    border-bottom: 1px dashed #7be0fb;
+    bottom: -10px;
+    content: " ";
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.navbar-default li:not(.divider-vertical) a {
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.navbar-default a h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+

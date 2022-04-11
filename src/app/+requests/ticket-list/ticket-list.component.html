@@ -1,0 +1,14 @@
+<div>
+  <div class="widget-body no-padding">
+    <sa-datatable #datatable (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelect($event)" ObjectName="Ticket"  [options]="options"
+      paginationLength="true" tableClass="table table-bordered table-hover table-stripe">
+      <thead>
+        <tr>
+          <th *ngFor="let disCol of displayedColumns">
+            {{disCol}}
+          </th>
+        </tr>
+      </thead>
+    </sa-datatable>
+  </div>
+</div>

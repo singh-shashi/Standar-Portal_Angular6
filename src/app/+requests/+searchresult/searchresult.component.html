@@ -1,0 +1,52 @@
+<div id="content">
+    <div class="row noprint">
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 my-auto" style="text-align: right">&nbsp;
+      </div>
+    </div>
+    <section>
+      <div class="row">
+        <article class="" [ngClass]="{'col-sm-20 col-md-20 col-lg-9 padding-5' : showAttachments, 'col-sm-24 col-md-24 col-lg-12 padding-5' : !showAttachments }">
+            <div id='w' class="card" [@flyInOut]="'in'">
+                <div class="card-body">
+                  <div class="card-title d-flex noprint p-2 lead-sm">
+                      <div class="flex-fill"><i class="fas fa-headphones-alt"></i>&nbsp; {{TicketInfoDet}}</div>
+                      <div>
+                          <a class="btn btn-link btn-xs text-primary" (click)="reloadDataTable()">
+                              <i class="fas fa-redo"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div>
+                <app-ticket-list #ticketlist (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelectedTicket($event)" [hidden]="showDetail"
+                  [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [ParentObjName]="parentObjName" [ParentObjID]="parentObjID"
+                  [SearchCondition]="searchCondition"></app-ticket-list>
+                <app-ticket-detail (onSetHide)="onShowDetail($event)" [hidden]="!showDetail" [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [TicketData]="ticketSelected"></app-ticket-detail>
+              </div>
+            </div>
+          </div>
+      <!-- end widget -->
+    </article>
+    <article class="col-sm-3 col-lg-3 padding-5" [ngClass]="{'display-none' : !showAttachments }">
+      <div sa-widget id='a' [colorbutton]="false" [editbutton]="true" class="margin-bottom-10" [@flyInOut]="'in'">
+        <header class="noprint">
+          <h2>
+            <i>Attachments</i>
+          </h2>
+        </header>
+        <div>
+          <!-- widget content -->
+          <div class="widget-body smart-form noprint">
+            <fieldset>
+              <section>
+                <!-- <div *ngFor="let linkedattachment of linkedattachments">
+                  {{linkedattachment.DOCNAME}}
+                </div> -->
+              </section>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+</div>

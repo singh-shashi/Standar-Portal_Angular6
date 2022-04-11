@@ -1,0 +1,163 @@
+<div style="width: 100%;height: 100%;position: absolute;z-index: 9999;" [hidden]="!loading">
+    <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+</div>
+
+<form class="smart-form">
+    <div [ngClass]="{'display-none' : !NoRecords }" *ngIf="FieldData.length>0">
+    <fieldset>
+        <ng-container *ngFor="let fld of FieldData" [ngSwitch]="true">
+            <section *ngSwitchCase="fld.FieldType===0">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+                <label class="select">
+                    <input type="text" #{{fld.FieldName}} id="{{fld.FieldName}}" maxlength="254" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                        placeholder="{{fld.LabelText}}" class="form-control">
+                </label>
+            </section>
+            <section *ngSwitchCase="fld.FieldType===1 || fld.FieldType===2 || fld.FieldType===18">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+                <label class="select">
+                    <input type="number" #{{fld.FieldName}} id="{{fld.FieldName}}"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                        placeholder="{{fld.LabelText}}" class="form-control">
+                </label>
+            </section>
+            <section *ngSwitchCase="fld.FieldType===4 || fld.FieldType===22">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                    {{fld.LabelText}} :
+                </label>
+                <label class="textarea">
+                    <textarea #{{fld.FieldName}} placeholder="{{fld.LabelText}}" class="form-control"
+                        id="{{fld.FieldName}}" rows="4"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"></textarea>
+                </label>
+            </section>
+
+
+            <section *ngSwitchCase="fld.FieldType===5 || fld.FieldType===9 || fld.FieldType===16">
+                <div *ngIf="fld.ISEXTERNAL=='N' && fld.DEPENDFLDID==0">
+                    <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                        {{fld.LabelText}} :
+                    </label>
+                    <label class="select">
+                        <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;"
+                            (change)="_LoadDependentdrpdown($event,fld.FORMNAME,fld.FieldName);" #{{fld.FieldName}}>
+                            <option value="">-- Select {{fld.LabelText}} --</option>
+                            <option *ngFor="let data of fld.FieldValues.split(',')" value="{{data}}"
+                                [selected]="data == fld.DefaultValue">{{data}}
+                            </option>
+                        </select>
+                        <i></i>
+                    </label>
+                </div>
+                <div *ngIf="fld.ISEXTERNAL=='N' && fld.DEPENDFLDID>0">
+                    <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                        {{fld.LabelText}} :
+                    </label>
+                    <label class="select">
+                        <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;" #{{fld.FieldName}}>
+                            <option value="">-- Select {{fld.LabelText}} --</option>
+                            <option *ngFor="let data of dynamicvar[fld.DEPENDFLDNAME][fld.FieldName]" value="{{data}}"
+                                [selected]="data == fld.DefaultValue">{{data}}</option>
+                        </select>
+                        <i></i>
+                    </label>
+                </div>
+                <div *ngIf="fld.ISEXTERNAL=='Y' && fld.DEPENDFLDID==0">
+                    <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                        {{fld.LabelText}} :
+                    </label>
+                    <label class="select">
+                        <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;"
+                            (change)="_LoadDependentdrpdown($event,fld.FORMNAME,fld.FieldName);" #{{fld.FieldName}}>
+                            <option value="">-- Select {{fld.LabelText}} --</option>
+                            <option *ngFor="let data of fld.FieldValues.split(',')" value="{{data}}"
+                                [selected]="data == fld.DefaultValue">{{data}}
+                            </option>
+                        </select>
+                        <i></i>
+                    </label>
+                </div>
+                <div *ngIf="fld.ISEXTERNAL=='Y' && fld.DEPENDFLDID>0">
+                    <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                        {{fld.LabelText}} :
+                    </label>
+                    <label class="select">
+                        <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;" #{{fld.FieldName}}>
+                            <option value="">-- Select {{fld.LabelText}} --</option>
+                            <option *ngFor="let data of dynamicvar[fld.DEPENDFLDNAME][fld.FieldName]" value="{{data}}"
+                                [selected]="data == fld.DefaultValue">{{data}}</option>
+                        </select>
+                        <i></i>
+                    </label>
+                </div>
+            </section>
+            <section *ngSwitchCase="fld.FieldType===11">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                    {{fld.LabelText}} :
+                </label>
+                <label class="select">
+                    <!-- <input type="date"  #{{fld.FieldName}} id="{{fld.FieldName}}" placeholder="Please select Date" [ngModel]="dt | date:'yyyy-MM-dd'" /> -->
+                    <input type="date" id="{{fld.FieldName}}"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" name="dt" value="{{fld.DefaultValue}}"
+                        class="form-control form-control-rounded" #{{fld.FieldName}}>
+                </label>
+            </section>
+            <section *ngSwitchCase="fld.FieldType===12">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                    {{fld.LabelText}} :
+                </label>
+                <label class="select">
+                    <!-- <input type="date"  #{{fld.FieldName}} id="{{fld.FieldName}}" placeholder="Please select Date" [ngModel]="dt | date:'yyyy-MM-dd'" /> -->
+                    <input type="date" id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                        class="form-control form-control-rounded" #{{fld.FieldName}}>
+                </label>
+            </section>
+            <section *ngSwitchCase="fld.FieldType===15">
+                <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+                <label class="select">
+                    <input type="text" [disabled]="true" #{{fld.FieldName}} id="{{fld.FieldName}}" maxlength="254"
+                        placeholder="{{fld.LabelText}}" value="{{fld.DefaultValue}}" class="form-control">
+                </label>
+            </section>
+           
+        </ng-container>
+        <div [hidden]="!AddAttch">
+        <section>
+            <label class="label">
+               Attach Files
+            </label>
+            <div id="divExternalFieldList" style="display: none;"></div>
+        </section>
+
+        <section>
+            <label class="textarea">
+                <input id="coverFile" type="file" #fileInput name="coverFile" (change)="onChange($event)" multiple="" class="textarea input-sm input-file-sm">
+                <input type="hidden" id="fileLengthError" value="">
+            </label>
+        </section>
+
+        <section [ngClass]="{'display-none': (filesps != null && filesps.length <= 0)}">
+            <label class="label">
+                <div id="fileName">
+                    <ul class="dd-list">
+                        <li *ngFor="let attachfile of filesps; let i = index" class="dd-item">
+                            <div class="dd-handle">
+                                {{i + 1}}
+                                <span>- {{attachfile.name}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </label>
+        </section>
+    </div>
+    </fieldset>
+
+    <footer>
+        <button (click)="submitRecords()" [disabled]="loading===true" class="btn btn-primary" type="button">
+            Submit
+        </button>
+    </footer>
+</div>
+    <div [ngClass]="{'display-none' : !NoRecords }" *ngIf="FieldData.length<=0">
+        <span>No corresponding form available!
+        </span>
+      </div>
+</form>

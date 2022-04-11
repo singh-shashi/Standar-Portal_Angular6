@@ -1,0 +1,64 @@
+/*-----------------custom css added----------------*/
+
+#header {
+    display: none;
+}
+
+.bg-color-white .col-md-5 {
+    margin: 45px auto;
+    float: none;
+}
+
+#logo-group>span {
+    float: none;
+    text-align: center;
+    height: auto;
+}
+
+#logo img {
+    width: 220px;
+}
+
+#logo-group {
+    margin: 15px auto;
+    width: 250px;
+}
+
+.no-padding {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px #ccc;
+    padding: 15px 20px 36px !important;
+}
+
+.smart-form input {
+    height: 40px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #ddd
+}
+
+.smart-form footer {
+    background: transparent;
+    border-top: 0;
+}
+
+.smart-form i {
+    padding-top: 4px;
+}
+
+footer .btn {
+    min-width: 40%;
+    border-radius: 3px;
+    padding: 10px 0;
+    text-align: center;
+    height: auto;
+}
+
+.btn-primary {
+    background-color: #0079c2;
+    border: 1px solid #0079c2;
+}
+
+.default-bg {
+    background: transparent !important;
+}

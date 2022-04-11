@@ -1,0 +1,98 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Search Requests']" icon="headphones" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+    </div>
+  </div>
+  <section id="widgets-grid">
+    <div class="row">
+      <article class="col-sm-24 col-md-24 col-lg-12 padding-5">
+          <div id='w' class="card" [@flyInOut]="'in'">
+              <div class="card-body">
+                <div class="card-title d-flex noprint p-2 lead-sm">
+                    <div class="flex-fill"><i class="fas fa-headphones-alt"></i>&nbsp;Requests</div>
+                    <div>
+                        <a class="btn btn-link btn-xs text-primary" (click)="reloadDataTable()">
+                            <i class="fas fa-redo"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div [className]="!showDetail ? 'widget-body-toolbar  smart-form' : ''" [hidden]="showDetail">
+                        <div class="row">
+                          <section class="col col-lg-2">
+                            <label class="select">
+                              <select [(ngModel)]="viewFilter">
+                                <option value="All">All</option>
+                                <option value="Open Tickets">Open Tickets</option>
+                                <option value="Waiting Customer Reply">Waiting Customer Reply</option>
+                                <option value="Resolved Tickets">Resolved Tickets</option>
+                                <option value="Closed Tickets">Closed Tickets</option>
+                                <option value="Auto-Closed Tickets">Auto-Closed Tickets</option>
+                              </select>
+                              <i></i>
+                            </label>
+                          </section>
+                          <section class="col col-lg-2">
+                            <label class="select">
+                              <select (change)="onChangeDate($event)">
+                                <option selected disabled>Opened</option>
+                                <option value="All">All</option>
+                                <option value="Today">Today</option>
+                                <option value="This Week">This Week</option>
+                                <option value="This Month">This Month</option>
+                                <option value="This Quarter">This Quarter</option>
+                                <option value="This Year">This Year</option>
+                                <option value="Last Week">Last Week</option>
+                                <option value="Last Week to Date">Last Week to Date</option>
+                                <option value="Last Month">Last Month</option>
+                                <option value="Last Month to Date">Last Month to Date</option>
+                                <option value="Last Year">Last Year</option>
+                                <option value="Last Year To Date">Last Year TO Date</option>
+                                <option value="Custom">Custom</option>
+                              </select>
+                              <i></i>
+                            </label>
+                          </section>
+                          <section class="col col-lg-2">
+                            <label class="input">
+                              <i class="icon-append fa fa-calendar"></i>
+                              <input type="text" #fromDateObj placeholder="From Date" class="form-control datepicker" [saUiDatepicker]="{dateFormat: 'dd M yy'}">
+                            </label>
+                          </section>
+                          <section class="col col-lg-2">
+                            <label class="input">
+                              <i class="icon-append fa fa-calendar"></i>
+                              <input type="text" #toDateObj placeholder="To Date" class="form-control datepicker" [saUiDatepicker]="{dateFormat: 'dd M yy'}">
+                            </label>
+                          </section>
+                          <section class="col col-lg-1">
+                            <button type="button" class="btn btn-primary" (click)="SearchTicketonDateFilter()" style="width: 100%; height: 32px;">
+                              Go </button>
+                          </section>
+                          <section class="col col-lg-2">
+                            <label class="input">
+                              <input #SearchText name="searchExpr" (keydown.enter)="SearchByKeyEnter($event,SearchText.value)" placeholder="Search Tickets" type="text">
+                            </label>
+                          </section>
+                          <section class="col col-lg-1">
+                            <button type="button" class="btn btn-primary" (click)="SearchTicket(SearchText.value)" style="width: 100%; height: 32px;">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </section>
+                        </div>
+                      </div>
+                      <app-ticket-list #ticketlist (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelectedTicket($event)" [hidden]="showDetail"
+                        [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [ParentObjName]="parentObjName" [ParentObjID]="parentObjID"></app-ticket-list>
+                      <app-ticket-detail (onSetHide)="onShowDetail($event)" [hidden]="!showDetail" [ApiKey]="apiKey" [JsonApiService]="jsonApiService"
+                        [TicketData]="ticketSelected"></app-ticket-detail>
+                </div>
+              </div>
+            </div>
+        <!-- end widget -->
+      </article>
+    </div>
+    <article>
+    </article>
+  </section>
+</div>

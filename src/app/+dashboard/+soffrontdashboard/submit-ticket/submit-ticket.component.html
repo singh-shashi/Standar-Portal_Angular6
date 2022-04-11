@@ -1,0 +1,231 @@
+<div style="width: 100%; height: 100%;" [hidden]="!loading">
+    <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+</div>
+<form class="smart-form">
+    <fieldset>
+        <section>
+            <label class="label">
+                1. This Request is regarding:
+            </label>
+            <label class="select" [ngClass]="{'state-error': (browserclass=='false'),'state-success': (newticketinfo.CustType != '') }">
+                <select id="SFTICKET_CustType" [(ngModel)]="newticketinfo.CustType" [ngModelOptions]="{standalone: true}" name="CustType"
+                    class="form-control" style="margin-top: 5px;">
+                    <option value="">Please select a request type</option>
+                    <option value="Registration Request">Registration Request</option>
+                    <option value="Data Edit">Data Edit</option>
+                    <option value="Potential Bug">Potential Bug</option>
+                    <option value="Reporting Issue">Reporting Issue</option>
+                    <option value="Enhancement Request">Enhancement Request</option>
+                    <option value="System Performance">System Performance</option>
+                    <option value="Training Request">Training Request</option>
+                    <option value="Functionality Question">Functionality Question</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+        <section>
+            <label class="label">
+                2. What is the general Category of your issue?
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Category != '') }">
+                <select id="SFTICKET_Cat1" name="Category" [(ngModel)]="newticketinfo.Category" [ngModelOptions]="{standalone: true}" class="form-control"
+                    style="margin-top: 5px;">
+                    <option value="">e.g. Clinical, Billing, Reporting, etc.</option>
+                    <option value="System Performance">System Performance</option>
+                    <option value="Scheduling">Scheduling</option>
+                    <option value="Front Desk">Front Desk</option>
+                    <option value="Registration">Registration</option>
+                    <option value="Reporting">Reporting</option>
+                    <option value="Clinical">Clinical</option>
+                    <option value="Employee">Employee</option>
+                    <option value="Billing/AR/GL">Billing/AR/GL</option>
+                    <option value="State Functionality">State Functionality</option>
+                    <option value="Information Exchange">Information Exchange</option>
+                    <option value="Third Party">Third Party</option>
+                    <option value="POE">POE</option>
+                    <option value="System Administration">System Administration</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                3. If this is an urgent issue, please let us know below.
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Urgency != '') }">
+                <select id="SFTICKET_Urgency" name="Urgency" [(ngModel)]="newticketinfo.Urgency" [ngModelOptions]="{standalone: true}" class="form-control"
+                    style="margin-top: 5px;">
+                    <option value="">Select an urgency from the dropdown</option>
+                    <option value="1 - No Deadline">1 - No Deadline</option>
+                    <option value="2 - Impending Deadline">2 - Impending Deadline</option>
+                    <option value="3 - Fast-Approaching Deadline">3 - Fast-Approaching Deadline</option>
+                    <option value="4 - Immediate Deadline">4 - Immediate Deadline</option>
+                    <option value="5 - Outage Impact">5 - Outage Impact</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                4. Help us understand the impact this issue having on your business.
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.BusImpact != '') }">
+                <select id="SFTICKET_BusImpact" name="BusImpact" [(ngModel)]="newticketinfo.BusImpact" [ngModelOptions]="{standalone: true}"
+                    class="form-control" style="margin-top: 5px;">
+                    <option value="">How many users, customers, documents, etc. are being affected? </option>
+                    <option value="5 - Outage Impact">5 - Outage Impact</option>
+                    <option value="1 - One to Few">1 - One to Few</option>
+                    <option value="2 - Few to Some">2 - Few to Some</option>
+                    <option value="3 - Some to Most">3 - Some to Most</option>
+                    <option value="4 - Most to All">4 - Most to All</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                5. Is there a specific business function being impacted by this issue?
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Classifica != '') }">
+                <select id="SFTICKET_Classifica" name="Classifica" [(ngModel)]="newticketinfo.Classifica" [ngModelOptions]="{standalone: true}"
+                    class="form-control" style="margin-top: 5px;">
+                    <option value="">Please select a classification</option>
+                    <option value="3 - Other">3 - Other</option>
+                    <option value="3 - Compliance">3 - Compliance</option>
+                    <option value="3 - Revenue">3 - Revenue</option>
+                    <option value="4 - Security">4 - Security</option>
+                    <option value="4 - Patient Safety">4 - Patient Safety</option>
+                    <option value="5 - Outage">5 - Outage</option>
+                    <option value="2 - Latency (Non-Outage)">2 - Latency (Non-Outage)</option>
+                    <option value="2 - Administrative Setup">2 - Administrative Setup</option>
+                    <option value="2 - Reporting Data">2 - Reporting Data</option>
+                    <option value="3 - Delivery of Care">3 - Delivery of Care</option>
+                    <option value="3 - Data Correction">3 - Data Correction</option>
+                    <option value="3 - Third Party Tool Access">3 - Third Party Tool Access</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+
+        <section>
+            <label class="label">
+                6. What risk level is associated with this request?
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Risk != '') }">
+                <select id="SFTICKET_Risk" name="Risk" [(ngModel)]="newticketinfo.Risk" [ngModelOptions]="{standalone: true}" class="form-control"
+                    style="margin-top: 5px;">
+                    <option value="">Risk as it relates to alternative workflows being available</option>
+                    <option value="0 - Outage">0 - Outage</option>
+                    <option value="1 - Minimal Risk">1 - Minimal Risk</option>
+                    <option value="2 - Minor Risk">2 - Minor Risk</option>
+                    <option value="3 - Major Risk">3 - Major Risk</option>
+                    <option value="0 - No Risk">0 - No Risk</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                7. Summary
+            </label>
+            <label class="textarea" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Synopsis != '') }">
+                <input type="text" placeholder="Enter a brief summary of the issue here" class="form-control" [(ngModel)]="newticketinfo.Synopsis"
+                    [ngModelOptions]="{standalone: true}" id="SFTICKET_Synopsis" name="Synopsis">
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                8. Please describe your issue in as much details as possible
+            </label>
+            <label class="textarea" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Detail != '') }">
+                <textarea placeholder="The more detail you provide here, the faster we will be able to reproduce your issue" style="margin-top: 5px;"
+                    class="form-control" rows="5" [(ngModel)]="newticketinfo.Detail" [ngModelOptions]="{standalone: true}" id="SFTICKET_Detail"
+                    name="Detail"></textarea>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                9. Please provide an example and the steps we will need to reproduce your issue
+            </label>
+            <label class="textarea" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.TestCaseq != '') }">
+                <textarea placeholder="e.g. Path in the system, related Client IDs, Document IDs, Claim IDs, etc." style="margin-top: 5px;"
+                    class="form-control" rows="2" [(ngModel)]="newticketinfo.TestCaseq" [ngModelOptions]="{standalone: true}"
+                    id="SFTICKET_TestCaseq" name="TestCaseq"></textarea>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                10. Is this happening in your PROD or CERT Environment?
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.Environ != '') }">
+                <select id="SFTICKET_Environ" name="Environ" class="form-control" [(ngModel)]="newticketinfo.Environ" [ngModelOptions]="{standalone: true}"
+                    style="margin-top: 5px;">
+                    <option value="">Please enter the applicable CareLogic environment</option>
+                    <option value="Certification">Certification</option>
+                    <option value="Production">Production</option>
+                    <option value="All Environments">All Environments</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                11. Attach any file or screenshots showing your issue that might be helpful
+            </label>
+            <div id="divExternalFieldList" style="display: none;"></div>
+        </section>
+
+        <section>
+            <label class="textarea">
+                <input id="coverFile" type="file" #fileInput name="coverFile" (change)="onChange($event)" multiple="" class="textarea input-sm input-file-sm">
+                <input type="hidden" id="fileLengthError" value="">
+            </label>
+        </section>
+
+        <section [ngClass]="{'display-none': (filesps != null && filesps.length <= 0)}">
+            <label class="label">
+                <div id="fileName">
+                    <ul class="dd-list">
+                        <li *ngFor="let attachfile of filesps; let i = index" class="dd-item">
+                            <div class="dd-handle">
+                                {{i + 1}}
+                                <span>- {{attachfile.name}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </label>
+        </section>
+
+        <section>
+            <label class="label">
+                12. Which browser are you using to access CareLogic?
+            </label>
+            <label class="select" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (newticketinfo.BrowserVer != '') }">
+                <select id="SFTICKET_BrowserVer" name="BrowserVer" [(ngModel)]="newticketinfo.BrowserVer" [ngModelOptions]="{standalone: true}"
+                    class="form-control" style="margin-top: 5px;">
+                    <option value="">Please select browser</option>
+                    <option value="Chrome">Chrome</option>
+                    <option value="Safari">Safari</option>
+                    <option value="Other">Other</option>
+                    <option value="Internet Explorer">Internet Explorer</option>
+                </select>
+                <i></i>
+            </label>
+        </section>
+    </fieldset>
+    <footer>
+        <button (click)="submitticket()" [disabled]="loading===true" class="btn btn-primary" type="button">
+            Submit
+        </button>
+    </footer>
+</form>

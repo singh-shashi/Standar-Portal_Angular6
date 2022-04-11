@@ -1,0 +1,19 @@
+/*-----------custom css added--------------*/
+
+
+.smart-style-4 aside .minifyme  {
+    background-color: #b0b0b0;
+}
+.minified nav>ul>li  {
+    padding-top:8px;
+    padding-bottom:8px;
+    border-top:0;
+    border-bottom:0;
+}
+aside li {
+    background: transparent !important
+}
+
+.minified nav>ul>li>ul>li {
+    background: transparent!important;
+}

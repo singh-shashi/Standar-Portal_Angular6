@@ -1,0 +1,20 @@
+<div>
+  <div class="widget-body no-padding">
+    <sa-datatable #datatable (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelect($event)" ObjectName="Defect" [options]="options"
+      paginationLength="true" tableClass="table table-bordered table-hover table-stripe">
+      <thead>
+        <!-- <tr>
+          <th [style.width]="'15%'" data-hide="mobile-p">Defect ID</th>
+          <th [style.width]="'55%'" data-hide="mobile-p">Summary</th>
+          <th [style.width]="'15%'" data-hide="mobile-p">Category</th>
+          <th [style.width]="'15%'" data-hide="mobile-p">Sub-Category</th>
+        </tr> -->
+        <tr>
+          <th *ngFor="let disCol of displayedColumns;">
+            {{disCol}}
+          </th>
+        </tr>
+      </thead>
+    </sa-datatable>
+  </div>
+</div>

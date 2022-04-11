@@ -1,0 +1,72 @@
+<header id="header" class="d-flex">
+  <div id="logo-group" style="background: transparent;" class="navbar-brand flex-fill">
+
+    <!-- PLACE YOUR LOGO HERE -->
+    <div id="logo">
+      <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </div>
+    <!-- END LOGO PLACEHOLDER -->
+
+    <!-- Note: The activity badge color changes when clicked and resets the number to 0
+    Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+    <!-- <sa-activities style="display: none;"></sa-activities> -->
+  </div>
+
+
+  <!-- <sa-recent-projects style="display: none;"></sa-recent-projects> -->
+
+
+  <!-- pulled right: nav area -->
+  <div class="d-flex">
+
+    <sa-collapse-menu></sa-collapse-menu>
+
+    <sa-linked-accounts [ApiKey]="apiKey" [LoggedInUser]="loggedInUser" [JsonApiService]="jsonApiService">
+    </sa-linked-accounts>
+
+    <div class="vertical-divider"></div>
+
+    <!-- fullscreen button -->
+    <sa-full-screen></sa-full-screen>
+    <!-- end fullscreen button -->
+
+    <div class="vertical-divider"></div>
+
+    <!-- logout button -->
+    <sa-logout></sa-logout>
+    <!-- end logout button -->
+
+    <div class="vertical-divider"></div>
+
+    <div>
+      <div class="profile-context hidden-xs dropdown p-2 px-3 mt-2 mb-1 text-success" dropdown>
+        <span class="profile-selector dropdown-toggle d-flex" dropdownToggle>
+          <i class="far fa-user text-dark"></i>
+          <i class="fas fa-caret-down my-auto mx-2"></i>
+        </span>
+
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+          <li class="px-4">
+            <a (click)="(openprofile())" class="px-0 dropdown-item">
+              <i class="far fa-user fa-sm fa-fw text-danger"></i>&nbsp;
+              <u>P</u>rofile</a>
+          </li>
+          <li class="px-4">
+            <a (click)="(openchangepassword())" class="px-0 dropdown-item">
+              <i class="far fa-edit fa-sm fa-fw text-danger"></i>&nbsp;
+              <u>C</u>hange Password</a>
+          </li>
+          <!-- <li class="px-4">
+            <a class="px-0 dropdown-item" (click)="searchKB()" target="_blank">
+              <i class="far fa-paper-plane fa-sm fa-fw text-danger"></i>&nbsp;
+              <u>K</u>nowledge Base
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- end pulled right: nav area -->
+
+</header>

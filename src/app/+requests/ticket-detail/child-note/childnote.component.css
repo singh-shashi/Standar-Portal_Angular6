@@ -1,0 +1,36 @@
+.notesummary {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.notesummary p.collapse:not(.show) {
+    height: 42px !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.notesummary p.collapsing {
+    min-height: 42px !important;
+}
+
+.notesummary a.collapsed:after {
+    content: '+ Read More';
+}
+
+.notesummary a:not(.collapsed):after {
+    content: '- Read Less';
+}
+
+.childnoteclass:hover div.collapsed>.moreanchor {
+    display: block !important;
+}
+
+.childnoteclass:hover div.expand>.moreanchor {
+    display: none !important;
+}
+
+.selected {
+    background: rgb(255, 255, 211);
+}

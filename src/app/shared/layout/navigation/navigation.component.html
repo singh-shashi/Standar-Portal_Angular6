@@ -1,0 +1,76 @@
+<aside id="left-panel" class="shadow-lg bg-light">
+
+  <!-- User info -->
+  <!-- <sa-login-info></sa-login-info> -->
+  <!-- end user info -->
+
+  <nav>
+    <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+    <ul saSmartMenu>
+      <li routerLinkActive="active">
+        <a title="Dashboard" routerLink="/dashboard/soffrontdashboard"
+          class="px-1 border-bottom text-center text-danger">
+          <span class="selected"><i class="fas fa-check text-success fa-sm fa-fw"></i></span>
+          <span class="rounded-circle"><span class="oi oi-grid-three-up fa-lg fa-fw"></span></span>
+          <span class="menu-item-parent">Home</span>
+        </a>
+      </li>
+      <li routerLinkActive="active" [hidden]="!showMenuRequest">
+        <a title="Tickets" class="px-1 border-bottom text-center text-primary">
+          <span class="selected"><i class="fas fa-check text-success fa-sm fa-fw"></i></span>
+          <span class="rounded-circle"><i class="far fa-flag fa-lg fa-fw"></i></span>
+          <span class="menu-item-parent">Tickets</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/requests/myopentickets">
+              <span class="selected"><i class="fas fa-check text-success fa-sm fa-fw"></i></span>
+              My Open Tickets
+            </a>
+          </li>          
+          <li routerLinkActive="active">
+            <a routerLink="/requests/myaccounttickets">My Account Tickets</a>
+          </li>
+          <!-- <li routerLinkActive="active">
+            <a routerLink="/requests/requestsawaitingreply">Requests Awaiting Reply</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/requests/requestswaitingverification">Requests Waiting Verification</a>
+          </li> -->
+        </ul>
+      </li>
+      <li routerLinkActive="active" [hidden]="!showMenuDefect">
+        <a title="Defects" class="px-1 border-bottom text-center text-warning">
+          <span class="selected"><i class="fas fa-check text-success fa-sm fa-fw"></i></span>
+          <span class="rounded-circle"><i class="far fa-list-alt fa-lg fa-fw"></i></span>
+          <span class="menu-item-parent">Defects</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/defects/opendefects">Open Defects</a>
+          </li>
+        </ul>
+      </li>
+      <li routerLinkActive="active" [hidden]="!showMenuContact">
+        <a title="Contacts" class="px-1 border-bottom text-center text-info">
+          <span class="selected"><i class="fas fa-check text-success fa-sm fa-fw"></i></span>
+          <span class="rounded-circle"><i class="far fa-address-card fa-lg fa-fw"></i></span>
+          <span class="menu-item-parent">Contacts</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/contacts/managecontacts">Manage Contacts</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </nav>
+
+  <sa-minify-menu></sa-minify-menu>
+
+</aside>

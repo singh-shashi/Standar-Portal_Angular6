@@ -1,0 +1,34 @@
+<div id="content">
+    <!-- <div class="row">
+      <sa-big-breadcrumbs [items]="['Search Requests']" icon="headphones" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+      </div>
+    </div> -->
+    <section id="widgets-grid">
+      <div class="row">
+        <article class="col-sm-24 col-md-24 col-lg-12 padding-5">
+            <div id='w' class="card" [@flyInOut]="'in'">
+                <div class="card-body">
+                  <div class="card-title d-flex noprint p-2 lead-sm">
+                      <div class="flex-fill"><i class="fas fa-headphones-alt"></i>&nbsp;{{ShowDetailValMsg}}</div>
+                      <div [hidden]="showRef">
+                          <a class="btn btn-link btn-xs text-primary" (click)="reloadDataTable()">
+                              <i class="fas fa-redo"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div>
+                      <app-ticket-list #ticketlist (onSetHide)="onShowDetail($event)" (onSelectItem)="onSelecteddrillTicket($event)" [hidden]="showDetail"
+                      [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [ParentObjName]="parentObjName" [ParentObjID]="parentObjID"
+                      [SearchCondition]="searchCondition" [ShowFirstRecord]="true"></app-ticket-list>
+                    <app-ticket-detail (onSetHide)="onShowDetail($event)" [hidden]="!showDetail" [ApiKey]="apiKey" [JsonApiService]="jsonApiService" [TicketData]="ticketSelected" [ShowFirstRecordView]="showDetail" [SelectedNoteID]="selectedNoteID"></app-ticket-detail>
+                  </div>
+                </div>
+              </div>
+          <!-- end widget -->
+        </article>  
+      </div>
+      <article>  
+      </article>
+    </section>  
+  </div>

@@ -1,0 +1,17 @@
+blockquote.twitter-tweet {
+    border-bottom: none !important;
+    border-top: 1px solid #eee !important;
+    margin: 0px 0px !important;
+    padding: 10px 16px 16px !important;
+}
+
+blockquote.twitter-tweet a {
+    color: #308ee0 !important;
+}
+
+.truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

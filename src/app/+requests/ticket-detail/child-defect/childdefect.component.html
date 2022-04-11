@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-12 col-lg-12">
+    <h3 class="margin-top-0">
+      Defect : {{ChildDefectRecord.Synopsis}}
+      <br>
+      <small class="font-xs">
+        <i>Submitted by
+          <a href="javascript:void(0);">{{ChildDefectRecord.Submitter}}</a> for
+          <a href="javascript:void(0);">{{ChildDefectRecord.Environ}}</a>
+        </i>
+      </small>
+    </h3>
+    <ul class="list-inline">
+        <li>
+          <i class="fa fa-calendar"></i>
+          <a href="javascript:void(0);"> {{ChildDefectRecord.SubDate | date:'medium'}} </a>
+        </li>
+        <li [ngClass]="{'text-danger' : (ChildDefectRecord.Status == 'Open'), 'text-primary': (ChildDefectRecord.Status != 'Open') }">
+          <i class="fa fa-flag"></i>
+          <a href="javascript:void(0);" style="color: inherit;"> {{ChildDefectRecord.Status}} </a>
+        </li>
+      </ul>
+    <p innerHtml="{{ChildDefectRecord.Details}}">
+
+    </p>
+    <h3 class="margin-top-0">Steps</h3>
+    <p innerHtml="{{ChildDefectRecord.Steps}}">
+
+    </p>
+  </div>
+</div>

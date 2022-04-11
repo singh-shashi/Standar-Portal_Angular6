@@ -1,0 +1,75 @@
+<header id="header" class="animated fadeInDown">
+
+  <div id="logo-group" style="background: transparent;">
+    <span id="logo"> <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </span>
+  </div>
+
+  <!-- <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs ">Need an account?</span> <a routerLink="/auth/register" class="btn btn-danger">Create account</a> </span> -->
+
+</header>
+<div id="main" role="main" class="animated fadeInDown bg-vitriol" style="height:100vh;">
+  <div id="content" class="container">
+
+    <div class="modal-dialog modal-mdsm" role="document">
+      <div class="modal-content shadow-lg">
+        <div class="modal-body">
+          <div class="modal-title py-2">
+            <div style="font-size: 14px; text-align: center; color: #194774; font-weight: 600;">{{WelcomeMsg}}</div>
+            <div id="logo-group" style="background: transparent;">
+              <span id="logo"> <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"/> <span style="position: absolute; left: 52%; font-size: 1rem; font-weight: 600; color: darkcyan; letter-spacing: 0.1rem;">Support Portal</span> </span>
+              
+            </div>
+          </div>
+          <form class="p-3" (submit)="login($event)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <div class="input-group mb-3 shadow-sm">
+                <input class="form-control" [(ngModel)]="useremail" type="email" name="email"
+                  data-smart-validate-input="" data-required="" data-email=""
+                  data-message-required="Please enter your email address"
+                  data-message-email="Please enter a VALID email address">
+                <div class="input-group-append">
+                  <span class="input-group-text bg-white text-primary">
+                    <i class="far fa-user fa-fw"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <div class="input-group mb-3 shadow-sm">
+                <input class="form-control" [(ngModel)]="password" type="password" name="password"
+                  data-smart-validate-input="" data-required="" data-minlength="3" data-maxnlength="20"
+                  data-message="Please enter your email password">
+                <div class="input-group-append">
+                  <span class="input-group-text bg-white text-primary">
+                    <i class="far fa-eye-slash fa-fw"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="remember" checked />&nbsp;
+              <label class="form-check-label" for="exampleCheck1">Stay signed in</label>
+            </div>
+            <button (click)="login($event)" type="submit" class="d-none">Sign In</button>
+          </form>
+          <div class="modal-footer">
+            <div class="w-100 d-flex justify-content-end">
+              <div class="d-flex">
+                <a class="btn btn-link mx-0 px-2" [ngClass]="{'d-none' : !showForgotPassword }" routerLink="/auth/forgot-password">Forgot your password?</a>
+                <a class="btn btn-link mx-0 px-2" [ngClass]="{'d-none' : !showNewUser}"  routerLink="/auth/register">New User?</a>
+              </div>
+              <div class="">
+                <button (click)="login($event)" type="button" class="btn btn-primary rounded shadow">Sign In</button>
+              </div>
+            </div>
+          </div>
+          <div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;"
+            [ngClass]="{'display-none' : !loading }">
+            <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

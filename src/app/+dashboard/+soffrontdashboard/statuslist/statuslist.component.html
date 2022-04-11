@@ -1,0 +1,58 @@
+<div style="width: 100%; height: 100%;" [hidden]="!loading">
+    <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+</div>
+
+<div class="pb-2">
+    <ul class="list-group list-group-flush">
+        <!-- <li class="list-group-item d-flex flex-row" query="Waiting Customer Reply" [hidden]="!show">
+            <div class="flex-fill lead-xs d-flex">
+                <div class="my-auto text-danger"><i class="far fa-list-alt fa-lg fa-fw"></i></div>
+                <div class="flex-fill ml-2 my-auto">Eng Enhancement</div>
+            </div>
+            <div>
+                <button class="btn btn-outline-danger btn-sm rounded-pill px-4 py-0 btn-widthfix"
+                    (click)="drillDownRequests(2,'Eng Enhancement')">{{statcount[2]}}</button>
+            </div>
+        </li> -->
+        <li class="list-group-item d-flex flex-row" query="Open Tickets">
+            <div class="flex-fill lead-xs d-flex">
+                <div class="my-auto text-primary"><i class="far fa-list-alt fa-lg fa-fw"></i></div>
+                <div class="flex-fill ml-2 my-auto">Open Tickets (Submitted by me)</div>
+            </div>
+            <div>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-4 py-0 btn-widthfix"
+                    (click)="drillDownRequests(1,'Open Tickets')">{{statcount[1]}}</button>
+            </div>
+        </li>
+        <li class="list-group-item d-flex flex-row" query="Resolved Tickets">
+            <div class="flex-fill lead-xs d-flex">
+                <div class="my-auto text-success"><i class="far fa-list-alt fa-lg fa-fw"></i></div>
+                <div class="flex-fill ml-2 my-auto">Resolved Tickets</div>
+            </div>
+            <div>
+                <button class="btn btn-outline-success btn-sm rounded-pill px-4 py-0 btn-widthfix"
+                    (click)="drillDownRequests(3,'Resolved Tickets')">{{statcount[3]}}</button>
+            </div>
+        </li>
+        <li class="list-group-item d-flex flex-row" query="Closed Tickets">
+            <div class="flex-fill lead-xs d-flex">
+                <div class="my-auto text-success"><i class="far fa-list-alt fa-lg fa-fw"></i></div>
+                <div class="flex-fill ml-2 my-auto">Closed Tickets</div>
+            </div>
+            <div>
+                <button class="btn btn-outline-success btn-sm rounded-pill px-4 py-0 btn-widthfix"
+                    (click)="drillDownRequests(0,'Closed Tickets')">{{statcount[0]}}</button>
+            </div>
+        </li>
+        <!-- <li class="list-group-item d-flex flex-row" query="Open Defects" [hidden]="!show">
+            <div class="flex-fill lead-xs d-flex">
+                <div class="my-auto text-warning"><i class="far fa-list-alt fa-lg fa-fw"></i></div>
+                <div class="flex-fill ml-2 my-auto">Open Defects</div>
+            </div>
+            <div>
+                <button class="btn btn-outline-warning btn-sm rounded-pill px-4 py-0 btn-widthfix"
+                    (click)="drillDownRequests(4,'Open Defects')">{{statcount[4]}}</button>
+            </div>
+        </li> -->
+    </ul>
+</div>

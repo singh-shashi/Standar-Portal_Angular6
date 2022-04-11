@@ -1,0 +1,18 @@
+<div style="width: 100%;height: 100%;position: absolute;z-index: 9999;" [hidden]="!loading">
+  <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px; margin-left: 47%;"></i>
+</div>
+<form class="smart-form" style="min-height: 50px;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex" *ngFor="let doc of alldocuments">
+      <span class="flex-fill LogText" title="{{doc.DOCNAME}}">{{doc.DOCNAME}}</span>
+      <button class="btn btn-link" title="Download" 
+        (click)="downloadAttach(doc.DOCNAME,doc.DOCPATH)">
+        <i class="fa fa-download"></i>
+      </button>
+    </li>
+  </ul>
+  <div [ngClass]="{'display-none' : !NoRecords }" *ngIf="alldocuments.length<=0">
+    <span>No record found!
+    </span>
+  </div>
+</form>

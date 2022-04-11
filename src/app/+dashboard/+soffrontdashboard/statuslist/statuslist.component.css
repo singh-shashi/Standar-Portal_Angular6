@@ -1,0 +1,15 @@
+.badge {
+  padding: 5px 0px !important;
+  white-space: nowrap;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  min-width: 45px !important;
+  font-weight: bold!important;
+}
+.btn-widthfix
+{
+  width: 55px !important;
+  padding-left: 0.5rem!important;
+  padding-right: 0.5rem!important;
+}

@@ -1,0 +1,16 @@
+<div class="card border-0" [ngClass]="{'shadow selected': this.SelectedNoteID == this.ChildNoteRecord.FormId}">
+  <div class="card-body p-1">
+    <h5 class="card-title d-flex">
+      <div class="flex-fill text-nowrap text-truncate text-info">{{ChildNoteRecord.Subject}}</div>
+      <small class="text-nowrap"><i class="far fa-user fa-sm fa-fw text-danger"></i>&nbsp;{{ChildNoteRecord.Author}}</small>
+    </h5>
+    <div class="card-subtitle mb-2 text-muted text-success">
+      <i class="far fa-calendar"></i>&nbsp;
+      {{ChildNoteRecord.NoteDate | date:'medium'}}
+    </div>
+    <p class="card-text">
+      {{ChildNoteRecord.Subject}}
+    </p>
+    <div [innerHTML]="ChildNoteRecord.NoteText"></div>
+  </div>
+</div>

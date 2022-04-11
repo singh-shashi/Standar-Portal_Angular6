@@ -1,0 +1,15 @@
+.rating label:hover + .tooltip {
+    opacity: 1;
+}
+
+.tooltip
+{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 75%;
+}
+
+.selectioncss{
+width: 100%;
+}

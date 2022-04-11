@@ -1,0 +1,195 @@
+<div class="widget-body-toolbar mainnavbar noprint">
+  <div class="row">
+    <div class="col-sm-4 col-lg-4">
+      <div class="btn-group">
+        <!-- <button type="button" class="btn btn-info" title="Audit Trail">
+              <i class="fa fa-road fa-fw"></i>
+            </button> -->
+
+        <button type="button" class="btn btn-info" title="Print" onclick="window.print()">
+          <i class="fa fa-print fa-fw"></i>
+        </button>
+      </div>
+
+    </div>
+    <div class="col-sm-2 col-lg-2">
+
+    </div>
+    <div class="col-sm-6 col-lg-6">
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <article [ngClass]="{'col-sm-8 col-lg-8 childarticle' : ShowChildrenAside, 'col-sm-12 col-lg-12 childarticle': !ShowChildrenAside }">
+    <div class="widget-body-toolbar subnavbar noprint">
+      <div class="row">
+        <!-- <div class="col-sm-9 col-lg-9">
+          <div class="navbar navbar-default">
+            <ul class="nav navbar-nav">
+              <li title="Contacts" [ngClass]="{'active' : (ShowChildren == 'CONTACT') }">
+                <a href="javascript:void(0);" class="btn-info" (click)="OpenChildren()">
+                  <h3>
+                    <i class="fa fa-users"></i>&nbsp;Contacts</h3>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div> -->
+        <div class="col-sm-3 col-lg-3">
+          <a href="javascript:void(0);" class="btn btn-link" style="float: right; margin-right: 1%;" (click)="BacktoList()">
+            <i class="far fa-times-circle fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- widget content -->
+    <div class="well smart-form">
+      <header style="background: transparent;">
+        <h2>Defect #{{defect_data.DefectID}}</h2>
+      </header>
+      <fieldset style="background: transparent;">
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Status</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.Status" readonly value="{{defect_data.Status}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Defect ID</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.DefectID" readonly value="{{defect_data.DefectID}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Environment</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.Environ" readonly value="{{defect_data.Environ}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Type</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.DefType" readonly value="{{defect_data.DefType}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Public</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.DPublic" readonly value="{{defect_data.DPublic}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Category</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.CateGory" readonly value="{{defect_data.CateGory}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Sub Category</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.SubCategry" readonly value="{{defect_data.SubCategry}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Create Date</label>
+            <label class="input">
+              <input type="text" [ngModel]="defect_data.SubDate | date:'medium'" (ngModelChange)="defect_data.SubDate = $event" readonly>
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Developer</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.Developr" readonly value="{{defect_data.Developr}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Reporter</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.Submitter" readonly value="{{defect_data.Submitter}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">QA Person</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.QAPerson" readonly value="{{defect_data.QAPerson}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-6">
+            <label class="label">Prod Fix Date</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.FixDate" readonly value="{{defect_data.FixDate | date:'medium'}}">
+            </label>
+          </section>
+          <section class="col col-lg-6">
+            <label class="label">Cert Fix Date</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.CertFix" readonly value="{{defect_data.CertFix}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-12">
+            <label class="label">Summary</label>
+            <label class="input">
+              <input type="text" [(ngModel)]="defect_data.Synopsis" readonly value="{{defect_data.Synopsis}}">
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-12">
+            <label class="label">Description</label>
+            <label class="textarea">
+              <textarea rows="4" [(ngModel)]="defect_data.Details" readonly value="{{defect_data.Details}}"></textarea>
+            </label>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col col-lg-12">
+            <label class="label">Steps to Reproduce</label>
+            <label class="textarea">
+              <textarea rows="4" [(ngModel)]="defect_data.Steps" readonly value="{{defect_data.Steps}}"></textarea>
+            </label>
+          </section>
+        </div>
+      </fieldset>
+    </div>
+    <!-- end widget body-->
+  </article>
+  <article class="col-sm-4 col-lg-4 noprint" [ngClass]="{'display-none' : !ShowChildrenAside }">
+    <div class="widget-body-toolbar subnavbar">
+      <div class="row">
+        <div class="col-sm-7 col-lg-7">
+          <h3 class="margin-top-0 margin-bottom-0 detailViewChildHeader lead-sm">{{!ShowChildForm ? 'Latest ' + ShowChildrenTitle : ShowChildrenTitle}}</h3>
+        </div>
+        <div class="col-sm-5 col-lg-5">
+          <button type="button" class="btn btn-labeled btn-success" style="float: right;" [ngClass]="{'display-none' : !ShowChildAdd}">
+            <span class="btn-label">
+              <i class="fa fa-plus"></i>
+            </span>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="well padding-10 margin-bottom-10" *ngFor="let childContact of ChildRecords">
+      <app-childcontact [ChildContactRecord]="childContact"></app-childcontact>
+    </div>
+    <div class="well padding-10 margin-bottom-10" *ngIf="ChildRecords.length <= 0">
+      <i>No records found</i>
+    </div>
+  </article>
+</div>

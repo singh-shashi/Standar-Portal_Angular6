@@ -1,0 +1,85 @@
+blockquote.twitter-tweet {
+  border-bottom: none !important;
+  border-top: 1px solid #eee !important;
+  margin: 0px 0px !important;
+  padding: 10px 16px 16px !important;
+}
+
+blockquote.twitter-tweet a {
+  color: #308ee0 !important;
+}
+table {
+  width: 100%;
+}
+
+.mat-row.highlighted {
+  background:  #f6c2c0;
+  }
+  .mat-row:hover {
+      background-color:  #f6c2c0;
+      cursor: pointer;
+    }
+
+    .searchButton {
+      color:white !important;
+      background-color: #e57165 !important;
+      border-color: #e57065 !important;
+  }
+  .searchButton:hover {
+    background-color:#d8746a !important;
+    cursor: pointer !important;
+}
+
+.select-height {height: 31px !important;}
+
+.form-control {
+border:0 none!important;
+display: block;
+width: 96%;
+height: calc(1.5em + .75rem + 2px);
+padding: .375rem .75rem;
+font-weight: 400;
+line-height: 1.5;
+color: #9A9A9A!important;
+background-color: #fff;
+background-clip: padding-box;
+border-bottom: 1px dashed #ced4da!important;
+border-radius: .25rem!important;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button, input {
+overflow: visible;
+}
+button, input, optgroup, select, textarea {
+margin: 0;
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+}
+.dd-handle{
+width: 332px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* .column {
+float: left;
+width: 50%;
+}
+
+.column1 {
+float: left;
+width: 100%;
+} */
+
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+.smart-form section {
+margin-bottom: 15px !important;
+ position: inherit !important;
+}

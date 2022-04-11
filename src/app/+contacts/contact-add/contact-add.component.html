@@ -1,0 +1,471 @@
+<!-- <div class="widget-body-toolbar">
+  <div class="btn-group">
+    <button type="button" class="btn btn-success" [disabled]="loading===true" (click)="SubmitContact()" style="margin-bottom: 15px;">
+      Save
+    </button>
+    <button type="button" class="btn btn-info" [disabled]="loading===true" (click)="ResetContact()" style="margin-bottom: 15px;">
+      Reset
+    </button>
+    <button type="button" class="btn btn-danger" [disabled]="loading===true" (click)="CancelContact()" style="margin-bottom: 15px;">
+      Cancel
+    </button>
+  </div>
+</div>
+<div class="row">
+  <article class="col-sm-13 col-lg-10">
+    <div role="content">
+      <div class="widget-body smart-form">
+        <fieldset>
+          <legend>
+            <strong>
+              Identifying Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">Status</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Status" readonly>
+              </label>
+            </section>
+            <section class="col col-lg-8">
+              <label class="label">Company</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Company" readonly>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">Salutation</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.MrMs">
+                  <option value="Dr">Dr</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="MS">MS</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">First Name</label>
+              <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (contact_data.FName != '') }">
+                <input type="text" [(ngModel)]="contact_data.FName">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Last Name</label>
+              <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (contact_data.LName != '') }">
+                <input type="text" [(ngModel)]="contact_data.LName">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-8">
+              <label class="label">Job Title</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.JobTitle">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Full Name</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.FullName">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-8">
+              <label class="label">Role</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.ConRole">
+                  <option value="Accts Receivable">Accts Receivable</option>
+                  <option value="Administrative">Administrative</option>
+                  <option value="Billing">Billing</option>
+                  <option value="Clinical">Clinical</option>
+                  <option value="Compliance / QA">Compliance / QA</option>
+                  <option value="Executive">Executive</option>
+                  <option value="FD / Scheduling">FD / Scheduling</option>
+                  <option value="IT / Technical">IT / Technical</option>
+                  <option value="Main POC - Billing">Main POC - Billing</option>
+                  <option value="Main POC - Clinical">Main POC - Clinical</option>
+                  <option value="Main POC - Executive">Main POC - Executive</option>
+                  <option value="Main POC - Sys Admin">Main POC - Sys Admin</option>
+                  <option value="Medical - Dr/NP/RN">Medical - Dr/NP/RN</option>
+                  <option value="Medical Records">Medical Records</option>
+                  <option value="Non-Clinical">Non-Clinical</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Affilliate</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.Resellee">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            <strong>
+              Contact Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Address1</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Address1">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-12">
+              <label class="label">Address2</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Address2">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">City</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.City">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">State</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.StatePr">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Zip</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.ZipPost">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-4">
+              <label class="label">Country</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Country">
+              </label>
+            </section>
+            <section class="col col-lg-4">
+              <label class="label">Location</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Location">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Direct Phone</label>
+              <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (contact_data.BPhone != '') }">
+                <input type="text" [(ngModel)]="contact_data.BPhone">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Main Phone</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.AcctPhone">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Mobile Phone</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Mobile">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Email</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.email">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Fax</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Fax">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Email Status</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.Nletstat">
+                  <option value="Bounced">Bounced</option>
+                  <option value="Good">Good</option>
+                  <option value="Opted Out">Opted Out</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            <strong>
+              Portal & Support Information
+            </strong>
+          </legend>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Portal Access</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.PortalAcc">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Receive Release Notes?</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.RelNotif">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">Portal Access Type</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.PAccessTyp">
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Receive Downtime Notifications?</label>
+              <label class="select">
+                <select [(ngModel)]="contact_data.DownNotif">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-lg-6">
+              <label class="label">ADDITIONAL INFORMATION</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.AddlInfo">
+              </label>
+            </section>
+            <section class="col col-lg-6">
+              <label class="label">Password</label>
+              <label class="input">
+                <input type="text" [(ngModel)]="contact_data.Pswd">
+              </label>
+            </section>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </article>
+</div>
+<div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;" [ngClass]="{'display-none' : !loading }">
+  <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+</div> -->
+
+
+<div style="width: 100%;height: 100%;position: absolute;z-index: 9999;" [hidden]="!loading">
+  <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px; margin-left: 47%;"></i>
+</div>
+
+<form class="smart-form">
+  <div [ngClass]="{'display-none' : !NoRecords }" *ngIf="FieldData.length>0">
+    <header style="text-align: right;">
+      <button (click)="submitRecords()" [disabled]="loading===true" class="btn btn-success" type="button">
+        Submit
+    </button>&nbsp;
+    <button (click)="CancelContact()" [disabled]="loading===true" class="btn btn-danger" type="button">
+        Cancel
+    </button>
+    </header>
+  <fieldset>
+      <ng-container *ngFor="let fld of FieldData" [ngSwitch]="true">
+          <div class="column">
+          <section *ngSwitchCase="fld.FieldType===0">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+              <label class="select">
+                  <input type="text" #{{fld.FieldName}} id="{{fld.FieldName}}" maxlength="254" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                      placeholder="{{fld.LabelText}}" class="form-control">
+              </label>
+          </section>
+      </div>
+      <div class="column">
+          <section *ngSwitchCase="fld.FieldType===1 || fld.FieldType===2 || fld.FieldType===18">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+              <label class="select">
+                  <input type="number" #{{fld.FieldName}} id="{{fld.FieldName}}"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                      placeholder="{{fld.LabelText}}" class="form-control">
+              </label>
+          </section>
+          </div>
+          <div class="column">
+          <section *ngSwitchCase="fld.FieldType===4 || fld.FieldType===22">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                  {{fld.LabelText}} :
+              </label>
+              <label class="select">
+                  <textarea #{{fld.FieldName}} placeholder="{{fld.LabelText}}" class="form-control"
+                      id="{{fld.FieldName}}"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"></textarea>
+              </label>
+          </section>
+      </div>  
+      <div class="column">
+          <section *ngSwitchCase="fld.FieldType===5 || fld.FieldType===9 || fld.FieldType===16">
+              <div style="margin-right: 25px;" *ngIf="fld.ISEXTERNAL=='N' && fld.DEPENDFLDID==0">
+                  <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                      {{fld.LabelText}} :
+                  </label>
+                  <label class="select">
+                      <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;"
+                          (change)="_LoadDependentdrpdown($event,fld.FORMNAME,fld.FieldName);" #{{fld.FieldName}}>
+                          <option value="">-- Select {{fld.LabelText}} --</option>
+                          <option *ngFor="let data of fld.FieldValues.split(',')" value="{{data}}"
+                              [selected]="data == fld.DefaultValue">{{data}}
+                          </option>
+                      </select>
+                      <i></i>
+                  </label>
+              </div>
+              <div style="margin-right: 25px;" *ngIf="fld.ISEXTERNAL=='N' && fld.DEPENDFLDID>0">
+                  <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                      {{fld.LabelText}} :
+                  </label>
+                  <label class="select">
+                      <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;" #{{fld.FieldName}}>
+                          <option value="">-- Select {{fld.LabelText}} --</option>
+                          <option *ngFor="let data of dynamicvar[fld.DEPENDFLDNAME][fld.FieldName]" value="{{data}}"
+                              [selected]="data == fld.DefaultValue">{{data}}</option>
+                      </select>
+                      <i></i>
+                  </label>
+              </div>
+              <div style="margin-right: 25px;" *ngIf="fld.ISEXTERNAL=='Y' && fld.DEPENDFLDID==0">
+                  <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                      {{fld.LabelText}} :
+                  </label>
+                  <label class="select">
+                      <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;"
+                          (change)="_LoadDependentdrpdown($event,fld.FORMNAME,fld.FieldName);" #{{fld.FieldName}}>
+                          <option value="">-- Select {{fld.LabelText}} --</option>
+                          <option *ngFor="let data of fld.FieldValues.split(',')" value="{{data}}"
+                              [selected]="data == fld.DefaultValue">{{data}}
+                          </option>
+                      </select>
+                      <i></i>
+                  </label>
+              </div>
+              <div style="margin-right: 25px;" *ngIf="fld.ISEXTERNAL=='Y' && fld.DEPENDFLDID>0">
+                  <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                      {{fld.LabelText}} :
+                  </label>
+                  <label class="select">
+                      <select id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" class="form-control" style="height:31px;" #{{fld.FieldName}}>
+                          <option value="">-- Select {{fld.LabelText}} --</option>
+                          <option *ngFor="let data of dynamicvar[fld.DEPENDFLDNAME][fld.FieldName]" value="{{data}}"
+                              [selected]="data == fld.DefaultValue">{{data}}</option>
+                      </select>
+                      <i></i>
+                  </label>
+              </div>
+          </section>
+      </div>
+      <div class="column">
+          <section *ngSwitchCase="fld.FieldType===11">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                  {{fld.LabelText}} :
+              </label>
+              <label class="select">
+                  <!-- <input type="date"  #{{fld.FieldName}} id="{{fld.FieldName}}" placeholder="Please select Date" [ngModel]="dt | date:'yyyy-MM-dd'" /> -->
+                  <input type="date" id="{{fld.FieldName}}"  [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" name="dt" value="{{fld.DefaultValue}}"
+                      class="form-control form-control-rounded" #{{fld.FieldName}}>
+              </label>
+          </section>
+      </div>
+      <div class="column">
+          <section *ngSwitchCase="fld.FieldType===12">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">
+                  {{fld.LabelText}} :
+              </label>
+              <label class="select">
+                  <!-- <input type="date"  #{{fld.FieldName}} id="{{fld.FieldName}}" placeholder="Please select Date" [ngModel]="dt | date:'yyyy-MM-dd'" /> -->
+                  <input type="date" id="{{fld.FieldName}}" [ngClass]="{'disabled' : fld.IsNonEditable==true }" [disabled] = "fld.IsNonEditable==true" value="{{fld.DefaultValue}}"
+                      class="form-control form-control-rounded" #{{fld.FieldName}}>
+              </label>
+          </section>
+          </div>
+          <div class="column">
+          <section *ngSwitchCase="fld.FieldType===15">
+              <label class="label text-nowrap text-truncate font-weight-bolder" [ngClass]="{'required': fld.IsRequired==true }">{{fld.LabelText}} :</label>
+              <label class="select">
+                  <input type="text" [disabled]="true" #{{fld.FieldName}} id="{{fld.FieldName}}" maxlength="254"
+                      placeholder="{{fld.LabelText}}" value="{{fld.DefaultValue}}" class="form-control">
+              </label>
+          </section>
+          </div>
+      </ng-container>
+      <div class="column1" [hidden]="!AddAttch">
+      <section>
+          <label class="label">
+             Attach Files
+          </label>
+          <div id="divExternalFieldList" style="display: none;"></div>
+      </section>
+
+      <section>
+          <label class="textarea">
+              <input id="coverFile" type="file" #fileInput name="coverFile" (change)="onChange($event)" multiple="" class="textarea input-sm input-file-sm">
+              <input type="hidden" id="fileLengthError" value="">
+          </label>
+      </section>
+
+      <section [ngClass]="{'display-none': (filesps != null && filesps.length <= 0)}">
+          <label class="label">
+              <div id="fileName">
+                  <ul class="dd-list">
+                      <li *ngFor="let attachfile of filesps; let i = index" class="dd-item">
+                          <div class="dd-handle">
+                              {{i + 1}}
+                              <span>- {{attachfile.name}}</span>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </label>
+      </section>
+  </div>
+  </fieldset>
+
+  <!-- <footer>
+     
+  </footer> -->
+</div>
+  <div [ngClass]="{'display-none' : !NoRecords }" *ngIf="FieldData.length<=0">
+      <span>No corresponding form available!
+      </span>
+    </div>
+</form>

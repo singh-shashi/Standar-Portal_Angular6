@@ -1,0 +1,51 @@
+<header id="header" class="animated fadeInDown">
+
+  <div id="logo-group" style="background: transparent;">
+    <span id="logo">
+      <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </span>
+  </div>
+
+  <!-- <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs ">Need an account?</span> <a routerLink="/auth/register" class="btn btn-danger">Create account</a> </span> -->
+
+</header>
+<div id="main" role="main" class="animated fadeInDown">
+  <div id="content" class="container">
+    <div class="row bg-color-white no-border default-bg">
+      <!--<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+          <h1 class="txt-color-red login-header-big">Soffront Support Portal</h1>
+        </div>-->
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6 beforeloginform">
+        <div class="well no-padding" style="position: relative;">
+          <div id="logo-group" style="background: transparent;">
+            <span id="logo">
+              <img src="assets/img/soffront-crm-logo.png" alt="SmartAdmin"> </span>
+          </div>
+          <form id="login-form" class="smart-form client-form">
+            <fieldset>
+              <section>
+                <label class="label">Enter your email address</label>
+                <label class="input" [ngClass]="{'state-error' : (browserclass=='false'),'state-success': (email != undefined && validateEmail) }">
+                  <i class="icon-append fa fa-envelope"></i>
+                  <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  placeholder="Email Address">
+                  <b class="tooltip tooltip-top-right">
+                    <i class="fa fa-envelope txt-color-teal"></i> Please enter email address for retrieving password.</b>
+                </label>
+              </section>
+            </fieldset>
+            <footer>
+              <button (click)="ForgotPassword()" class="btn btn-primary btn-login">
+                Send Password
+              </button>
+              <button routerLink="/auth/login" class="btn btn-danger btn-login">
+                Back to Login
+              </button>
+            </footer>
+          </form>
+          <div style="width: 100px; margin:auto; position:absolute; top:44%; left:46%; z-index:99;" [ngClass]="{'display-none' : !loading }">
+            <i class="fas fa-circle-notch fa-spin text-primary" style="font-size:24px;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
